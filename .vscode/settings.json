@@ -3,6 +3,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
@@ -13,5 +17,7 @@
   "files.exclude": {
     "foundry/": true
   },
+  "i18n-ally.localesPaths": ["lang", "foundry/lang"],
+  "i18n-ally.keystyle": "nested",
   "cSpell.words": ["ffle", "fvtt"]
 }
