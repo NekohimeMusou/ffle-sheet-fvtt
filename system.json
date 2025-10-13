@@ -1,7 +1,7 @@
 {
   "id": "ffle-sheet",
-  "title": "Final Fantasy Legend Edition (Unofficial)",
-  "description": "Unofficial Foundry VTT system for Final Fantasy Legend Edition",
+  "title": "FF Legend Edition (Unofficial)",
+  "description": "Unofficial Foundry VTT system for FF Legend Edition",
   "version": "0.1.0",
   "compatibility": {
     "minimum": 12,
@@ -18,8 +18,8 @@
     }
   ],
 
-  "esmodules": ["ffle.mjs"],
-  "styles": ["ffle.css", "ffle-supplemental.css"],
+  "esmodules": ["module/ffle.mjs"],
+  "styles": ["styles/ffle.css", "styles/ffle-supplemental.css"],
   "languages": [
     {
       "lang": "en",

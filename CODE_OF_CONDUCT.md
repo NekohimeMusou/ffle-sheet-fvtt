@@ -1,4 +1,4 @@
-# Code of Conduct - Final Fantasy Legend Edition (Unofficial)
+# Code of Conduct - FF Legend Edition (Unofficial)
 
 ## Our Pledge
 

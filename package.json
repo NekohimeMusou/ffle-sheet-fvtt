@@ -2,7 +2,7 @@
   "name": "ffle-sheet-fvtt",
   "private": true,
   "version": "1.0.0",
-  "description": "Unofficial Foundry VTT system for [Final Fantasy Legend Edition](https://mildra.itch.io/finalfantasy-le). **This project is not endorsed by or affiliated with the designers of the game. Please do not contact them for support.**",
+  "description": "Unofficial Foundry VTT system for [FF Legend Edition](https://mildra.itch.io/finalfantasy-le). **This project is not endorsed by or affiliated with the designers of the game. Please do not contact them for support.**",
   "homepage": "https://github.com/NekohimeMusou/ffle-sheet-fvtt#readme",
   "bugs": {
     "url": "https://github.com/NekohimeMusou/ffle-sheet-fvtt/issues"
