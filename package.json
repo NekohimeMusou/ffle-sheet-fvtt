@@ -1,0 +1,27 @@
+{
+  "name": "ffle-sheet-fvtt",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Unofficial Foundry VTT system for [Final Fantasy Legend Edition](https://mildra.itch.io/finalfantasy-le). **This project is not endorsed by or affiliated with the designers of the game. Please do not contact them for support.**",
+  "homepage": "https://github.com/NekohimeMusou/ffle-sheet-fvtt#readme",
+  "bugs": {
+    "url": "https://github.com/NekohimeMusou/ffle-sheet-fvtt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NekohimeMusou/ffle-sheet-fvtt.git"
+  },
+  "license": "MIT",
+  "author": "Nekohime Musou",
+  "type": "module",
+  "main": "module/ffle.mjs",
+  "scripts": {
+    "createSymlinks": "node ./tools/create-symlinks.mjs",
+    "postinstall": "npm run createSymlinks"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "eslint": "^9.37.0",
+    "globals": "^16.4.0"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "ffle-sheet",
+  "title": "Final Fantasy Legend Edition (Unofficial)",
+  "description": "Unofficial Foundry VTT system for Final Fantasy Legend Edition",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": 12,
+    "verified": 13
+  },
+
+  "url": "https://github.com/NekohimeMusou/ffle-sheet-fvtt",
+
+  "authors": [
+    {
+      "name": "Nekohime Musou",
+      "url": "https://github.com/NekohimeMusou",
+      "discord": "nekohime.musou"
+    }
+  ],
+
+  "esmodules": ["ffle.mjs"],
+  "styles": ["ffle.css", "ffle-supplemental.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+
+  "documentTypes": {
+    "Actor": {
+      "pc": { "htmlFields": ["notes"] },
+      "npc": { "htmlFields": ["notes"] }
+    }
+  },
+
+  "primaryTokenAttribute": "hp",
+  "secondaryTokenAttribute": "mp"
+}

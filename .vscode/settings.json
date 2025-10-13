@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "foundry/": true
+  },
+  "cSpell.words": ["ffle", "fvtt"]
+}
