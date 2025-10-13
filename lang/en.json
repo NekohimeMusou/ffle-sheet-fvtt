@@ -1,1 +1,29 @@
-{}
+{
+  "FFLE": {
+    "attackMod": "Attack Mod",
+    "damageRoll": "Damage Roll",
+    "resourceTypes": {
+      "hp": "HP",
+      "mp": "MP"
+    },
+    "defenseTypes": {
+      "phys": "Physical",
+      "mag": "Magic",
+      "skill": "Skill"
+    },
+    "sheet": {
+      "defenses": "Defenses",
+      "rollAttack": "Roll Attack"
+    },
+    "dice": {
+      "eed": "Extra Effort Dice",
+      "eedShort": "EED"
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "pc": "PC",
+      "npc": "NPC"
+    }
+  }
+}

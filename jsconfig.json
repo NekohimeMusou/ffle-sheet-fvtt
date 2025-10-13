@@ -10,7 +10,7 @@
   },
   "exclude": ["node_modules", "**/node_modules/*"],
   "include": [
-    "module/ffle.mjs",
+    "module/**/*",
     "foundry/client/client.mjs",
     "foundry/client/global.d.mts",
     "foundry/common/primitives/global.d.mts"
