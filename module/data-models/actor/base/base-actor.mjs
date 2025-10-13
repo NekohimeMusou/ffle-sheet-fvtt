@@ -1,4 +1,4 @@
-import { Roll } from "@client/dice/_module.mjs";
+/** @import { Roll } from "@client/dice/_module.mjs" */
 import generateResourceSchema from "./resource.mjs";
 import { FFLE } from "../../../config/config.mjs";
 
