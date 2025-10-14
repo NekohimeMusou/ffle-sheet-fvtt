@@ -1,3 +1,4 @@
+/* global Actor */
 /** @import { Actor } from "@client/config.mjs" */
 import { FFLE } from "./config/config.mjs";
 import { ACTORMODELS } from "./data-models/actor-data-models.mjs";
