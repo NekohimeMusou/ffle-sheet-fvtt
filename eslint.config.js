@@ -14,6 +14,9 @@ export default defineConfig([
     plugins: { js },
     extends: ["js/recommended"],
     languageOptions: { globals: { ...globals.browser, ...FOUNDRY_GLOBALS } },
+    rules: {
+      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    },
   },
   globalIgnores(["foundry/**/*"]),
 ]);
