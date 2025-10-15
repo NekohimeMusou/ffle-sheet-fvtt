@@ -12,6 +12,7 @@
     "editor.tabSize": 2
   },
   "[handlebars]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
   "files.exclude": {
@@ -19,5 +20,5 @@
   },
   "i18n-ally.localesPaths": ["lang", "foundry/lang"],
   "i18n-ally.keystyle": "nested",
-  "cSpell.words": ["charname", "ffle", "flexrow", "fvtt"]
+  "cSpell.words": ["charname", "dtype", "ffle", "flexrow", "fvtt"]
 }
