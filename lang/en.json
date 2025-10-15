@@ -14,11 +14,11 @@
     },
     "sheet": {
       "defenses": "Defenses",
-      "rollAttack": "Roll Attack",
-      "tabs": {
-        "notes": "Notes",
-        "debug": "Debug"
-      }
+      "rollAttack": "Roll Attack"
+    },
+    "tab": {
+      "notes": "Notes",
+      "debug": "Debug"
     },
     "dice": {
       "eed": "Extra Effort Dice",
