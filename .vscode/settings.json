@@ -16,7 +16,9 @@
     "editor.tabSize": 2
   },
   "files.exclude": {
-    "foundry/": true
+    "foundry/": true,
+    "node_modules/": true,
+    ".yarn": true
   },
   "i18n-ally.localesPaths": ["lang", "foundry/lang"],
   "i18n-ally.keystyle": "nested",
