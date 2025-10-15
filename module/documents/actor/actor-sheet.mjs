@@ -3,9 +3,7 @@ import { FFLE } from "../../config/config.mjs";
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-export default class FFLEActorSheet extends HandlebarsApplicationMixin(
-  ActorSheetV2,
-) {
+export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["ffle-sheet", "sheet", "actor"],
     position: {
@@ -17,6 +15,9 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
   static PARTS = {
     header: {
       template: "systems/ffle-sheet/templates/sheets/actor/header.hbs",
+    },
+    resources: {
+      template: "systems/ffle-sheet/templates/sheets/actor/resources.hbs",
     },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
     debug: {

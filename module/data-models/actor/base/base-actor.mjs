@@ -21,6 +21,7 @@ function generateSchema() {
     damageRoll: new fields.StringField({
       validate: (input) => Roll.validate(input),
       validationError: "Not a valid dice roll string.",
+      initial: "1d8",
     }),
     attackMod: new fields.NumberField({ integer: true, initial: 0 }),
     targetDefense: new fields.StringField({
