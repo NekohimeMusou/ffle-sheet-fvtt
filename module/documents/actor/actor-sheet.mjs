@@ -10,6 +10,9 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
       width: 600,
       height: 800,
     },
+    form: {
+      submitOnChange: true,
+    },
   };
 
   static PARTS = {
