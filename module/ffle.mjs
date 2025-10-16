@@ -1,5 +1,3 @@
-/* global Actor */
-/** @import { Actor } from "@client/config.mjs" */
 import { FFLE } from "./config/config.mjs";
 import { ACTORMODELS } from "./data-models/actor-data-models.mjs";
 import FFLEActor from "./documents/actor/actor.mjs";
@@ -7,6 +5,7 @@ import FFLEActorSheet from "./documents/actor/actor-sheet.mjs";
 
 const { Hooks } = foundry.helpers;
 const { DocumentSheetConfig } = foundry.applications.apps;
+const { Actor } = foundry.documents;
 
 Hooks.once("init", () => {
   console.log("FFLE | Initializing FFLE Sheet game system");

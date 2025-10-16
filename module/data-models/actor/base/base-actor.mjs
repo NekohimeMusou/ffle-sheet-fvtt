@@ -1,8 +1,8 @@
-/** @import { Roll } from "@client/dice/_module.mjs" */
 import generateResourceSchema from "./resource.mjs";
 import { FFLE } from "../../../config/config.mjs";
 
 const fields = foundry.data.fields;
+const { Roll } = foundry.dice;
 
 function generateSchema() {
   return {

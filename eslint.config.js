@@ -6,7 +6,6 @@ const FOUNDRY_GLOBALS = {
   foundry: "readonly",
   CONFIG: "readonly",
   game: "readonly",
-  Roll: "readonly",
 };
 
 export default defineConfig([
