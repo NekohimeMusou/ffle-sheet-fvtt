@@ -38,10 +38,13 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
     },
   };
 
+  /** @override */
   async _prepareContext(_options) {
+    const actor = this.actor;
     const context = {
       FFLE,
-      system: this.actor.system,
+      actor,
+      system: actor.system,
       /** @type {Record<string, foundry.applications.types.ApplicationTab>} */
       tabs: this._prepareTabs("primary"),
     };
@@ -49,13 +52,13 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
     return context;
   }
 
+  /** @override */
   async _preparePartContext(partId, context) {
     switch (partId) {
       case "debug":
-        break;
       case "notes":
+        context.tab = context.tabs[partId];
         break;
-      default:
     }
 
     return context;
