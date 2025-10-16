@@ -4,8 +4,7 @@ import FFLEActor from "./documents/actor/actor.mjs";
 import FFLEActorSheet from "./documents/actor/actor-sheet.mjs";
 
 const { Hooks } = foundry.helpers;
-const { DocumentSheetConfig } = foundry.applications.apps;
-const { Actor } = foundry.documents;
+const { Actors } = foundry.documents.collections;
 
 Hooks.once("init", () => {
   console.log("FFLE | Initializing FFLE Sheet game system");
@@ -29,7 +28,8 @@ function registerDocumentClasses() {
 }
 
 function registerDocumentSheets() {
-  DocumentSheetConfig.registerSheet(Actor, FFLE.PACKAGE_ID, FFLEActorSheet, {
+  Actors.unregisterSheet("core", foundry.applications.sheets.ActorSheetV2);
+  Actors.registerSheet(FFLE.PACKAGE_ID, FFLEActorSheet, {
     label: "FFLE.charSheet",
     types: ["pc", "npc"],
     makeDefault: true,

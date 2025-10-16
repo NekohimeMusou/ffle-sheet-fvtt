@@ -1,9 +1,11 @@
-import { FFLE } from "../../config/config.mjs";
-
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
+const { TextEditor } = foundry.applications.ux;
+const { mergeObject } = foundry.utils;
 
-export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
+export default class FFLEActorSheet extends HandlebarsApplicationMixin(
+  ActorSheetV2,
+) {
   static DEFAULT_OPTIONS = {
     classes: ["ffle-sheet", "sheet", "actor"],
     position: {
@@ -43,14 +45,15 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
 
   /** @override */
   async _prepareContext(_options) {
+    const context = {};
+
+    const FFLE = CONFIG.FFLE;
     const actor = this.actor;
-    const context = {
-      FFLE,
-      actor,
-      system: actor.system,
-      /** @type {Record<string, foundry.applications.types.ApplicationTab>} */
-      tabs: this._prepareTabs("primary"),
-    };
+
+    /** @type {Record<string, foundry.applications.types.ApplicationTab>} */
+    const tabs = this._prepareTabs("primary");
+
+    mergeObject(context, { FFLE, actor, system: actor.system, tabs });
 
     return context;
   }
@@ -59,8 +62,21 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
   async _preparePartContext(partId, context) {
     switch (partId) {
       case "debug":
-      case "notes":
         context.tab = context.tabs[partId];
+        break;
+      case "notes":
+        {
+          const enrichedNotes = await TextEditor.enrichHTML(
+            this.actor.system.notes,
+            {
+              secrets: this.actor.isOwner,
+              rollData: this.actor.getRollData(),
+            },
+          );
+
+          context.enrichedNotes = enrichedNotes;
+          context.tab = context.tabs[partId];
+        }
         break;
     }
 

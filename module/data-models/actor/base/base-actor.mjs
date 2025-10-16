@@ -6,7 +6,7 @@ const { Roll } = foundry.dice;
 
 function generateSchema() {
   return {
-    notes: new fields.HTMLField(),
+    notes: new fields.HTMLField({ initial: "<p>Test</p>" }),
 
     hp: new fields.SchemaField(generateResourceSchema()),
     mp: new fields.SchemaField(generateResourceSchema()),
