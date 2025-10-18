@@ -11,8 +11,7 @@
       "skill": "Skill"
     },
     "sheet": {
-      "defenses": "Defenses",
-      "rollAttack": "Roll Attack"
+      "defenses": "Defenses"
     },
     "tab": {
       "notes": "Notes",
@@ -26,7 +25,8 @@
       "attackData": "Attack Data",
       "attackMod": "Attack Mod",
       "damageRoll": "Damage Roll",
-      "targetDefense": "Target Defense"
+      "targetDefense": "Target Defense",
+      "rollAttack": "Roll Attack"
     }
   },
   "TYPES": {

@@ -16,6 +16,9 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
     form: {
       submitOnChange: true,
     },
+    actions: {
+      rollAttack: this.#rollAttack,
+    },
   };
 
   /** @inheritdoc */
@@ -49,6 +52,18 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
       initial: "debug",
     },
   };
+
+  /**
+   * Handle attack rolls
+   * @this {FFLEActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
+   */
+  static async #rollAttack(event, target) {
+    event.preventDefault();
+    const defense = target.dataset.defense;
+    await this.actor.rollAttack(defense);
+  }
 
   /** @override */
   async _prepareContext(_options) {

@@ -5,6 +5,9 @@ const resourceTypes = {
   mp: "FFLE.resourceTypes.mp",
 };
 
+/**
+ * @typedef {keyof typeof defenseTypes} DefenseType
+ */
 const defenseTypes = {
   phys: "FFLE.defenseTypes.phys",
   mag: "FFLE.defenseTypes.mag",

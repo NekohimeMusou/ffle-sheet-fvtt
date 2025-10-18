@@ -14,7 +14,6 @@
       />
     </li>
 
-    {{! Target Defense targetDefense (select) }}
     <li class="flexrow">
       <div>{{localize "FFLE.debug.targetDefense"}}</div>
       <select name="system.targetDefense">
@@ -26,9 +25,8 @@
       </select>
     </li>
 
-    {{! Damage Roll damageRoll }}
     <li class="flexrow">
-      <div>{{localize "FFLE.debug.attackMod"}}</div>
+      <div>{{localize "FFLE.debug.damageRoll"}}</div>
       <input
         type="text"
         name="system.damageRoll"
@@ -47,5 +45,5 @@
       />
     </li>
   </ol>
-  {{! Add button to roll attack }}
+  <button data-action="rollAttack" data-defense="{{system.targetDefense}}">{{localize "FFLE.debug.rollAttack"}}</button>
 </div>
