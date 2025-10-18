@@ -24,6 +24,7 @@ function generateSchema() {
       initial: "1d8",
     }),
     attackMod: new fields.NumberField({ integer: true, initial: 0 }),
+    attackEED: new fields.NumberField({ integer: true, initial: 3 }),
     targetDefense: new fields.StringField({
       choices: FFLE.defenseTypes,
       initial: "phys",
