@@ -53,7 +53,9 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
     /** @type {Record<string, foundry.applications.types.ApplicationTab>} */
     const tabs = this._prepareTabs("primary");
 
-    mergeObject(context, { FFLE, actor, system: actor.system, tabs });
+    const isEditable = this.isEditable;
+
+    mergeObject(context, { FFLE, actor, system: actor.system, tabs, isEditable });
 
     return context;
   }
@@ -71,6 +73,7 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
             {
               secrets: this.actor.isOwner,
               rollData: this.actor.getRollData(),
+              relativeTo: this.actor,
             },
           );
 

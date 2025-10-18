@@ -5,5 +5,16 @@
 >
   <h1>{{localize "FFLE.tab.notes"}}</h1>
 
-  {{editor enrichedNotes target="system.notes" editable=editable button=true engine="prosemirror" }}
+  {{#if isEditable}}
+  <prose-mirror
+    name="system.notes"
+    button="true"
+    editable="{{isEditable}}"
+    toggled="false"
+    value="{{system.notes}}">
+    {{{enrichedNotes}}}
+    </prose-mirror>
+  {{else}}
+  {{{enrichedNotes}}}
+  {{/if}}
 </section>
