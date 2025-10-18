@@ -22,5 +22,12 @@
   },
   "i18n-ally.localesPaths": ["lang", "foundry/lang"],
   "i18n-ally.keystyle": "nested",
-  "cSpell.words": ["charname", "ffle", "flexrow", "fvtt", "prosemirror"]
+  "cSpell.words": [
+    "charname",
+    "ffle",
+    "flexcol",
+    "flexrow",
+    "fvtt",
+    "prosemirror"
+  ]
 }

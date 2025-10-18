@@ -6,8 +6,9 @@ const { mergeObject } = foundry.utils;
 export default class FFLEActorSheet extends HandlebarsApplicationMixin(
   ActorSheetV2,
 ) {
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    classes: ["ffle-sheet", "sheet", "actor"],
+    classes: ["ffle", "sheet", "actor"],
     position: {
       width: 600,
       height: 800,
@@ -17,6 +18,7 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
     },
   };
 
+  /** @inheritdoc */
   static PARTS = {
     header: {
       template: "systems/ffle-sheet/templates/sheets/actor/header.hbs",
@@ -27,6 +29,10 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
     tabs: { template: "templates/generic/tab-navigation.hbs" },
     debug: {
       template: "systems/ffle-sheet/templates/sheets/actor/tabs/debug.hbs",
+      templates: [
+        "systems/ffle-sheet/templates/sheets/actor/debug/defenses.hbs",
+        "systems/ffle-sheet/templates/sheets/actor/debug/attack.hbs",
+      ],
       scrollable: [""],
     },
     notes: {
@@ -35,6 +41,7 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
     },
   };
 
+  /** @inheritdoc */
   static TABS = {
     primary: {
       tabs: [{ id: "debug" }, { id: "notes" }],
@@ -55,7 +62,13 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
 
     const isEditable = this.isEditable;
 
-    mergeObject(context, { FFLE, actor, system: actor.system, tabs, isEditable });
+    mergeObject(context, {
+      FFLE,
+      actor,
+      system: actor.system,
+      tabs,
+      isEditable,
+    });
 
     return context;
   }

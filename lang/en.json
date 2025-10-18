@@ -1,7 +1,5 @@
 {
   "FFLE": {
-    "attackMod": "Attack Mod",
-    "damageRoll": "Damage Roll",
     "charSheet": "Character Sheet",
     "resourceTypes": {
       "hp": "HP",
@@ -23,6 +21,12 @@
     "dice": {
       "eed": "Extra Effort Dice",
       "eedShort": "EED"
+    },
+    "debug": {
+      "attackData": "Attack Data",
+      "attackMod": "Attack Mod",
+      "damageRoll": "Damage Roll",
+      "targetDefense": "Target Defense"
     }
   },
   "TYPES": {

@@ -1,0 +1,41 @@
+<div class="attack flexcol">
+  <ol>
+    <li class="flexrow flex-group-center">
+      {{localize "FFLE.debug.attackData"}}
+    </li>
+
+    <li class="flexrow">
+      <div>{{localize "FFLE.debug.attackMod"}}</div>
+      <input
+        type="number"
+        name="system.attackMod"
+        value="{{system.attackMod}}"
+        placeholder="0"
+      />
+    </li>
+
+    {{! Target Defense targetDefense (select) }}
+    <li class="flexrow">
+      <div>{{localize "FFLE.debug.targetDefense"}}</div>
+      <select name="system.targetDefense">
+        {{selectOptions
+          FFLE.defenseTypes
+          selected=system.targetDefense
+          localize=true
+        }}
+      </select>
+    </li>
+
+    {{! Damage Roll damageRoll }}
+    <li class="flexrow">
+      <div>{{localize "FFLE.debug.attackMod"}}</div>
+      <input
+        type="text"
+        name="system.damageRoll"
+        value="{{system.damageRoll}}"
+        placeholder="1d8"
+      />
+    </li>
+  </ol>
+  {{! Add button to roll attack }}
+</div>
