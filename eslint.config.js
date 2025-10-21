@@ -3,8 +3,9 @@ import globals from "globals";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 const FOUNDRY_GLOBALS = {
-  foundry: "readonly",
   CONFIG: "readonly",
+  CONST: "readonly",
+  foundry: "readonly",
   game: "readonly",
 };
 
