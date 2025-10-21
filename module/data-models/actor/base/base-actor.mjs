@@ -4,6 +4,7 @@ import { FFLE } from "../../../config/config.mjs";
 const fields = foundry.data.fields;
 const { Roll } = foundry.dice;
 
+/** Generate the base data schema for actors. */
 function generateSchema() {
   return {
     notes: new fields.HTMLField({ initial: "<p>Test</p>" }),
@@ -35,6 +36,7 @@ function generateSchema() {
 /**
  * Base data model for actors. Individual actor types (PC, NPC) should extend this.
  * @abstract
+ * @extends foundry.abstract.TypeDataModel
  */
 export default class FFLEBaseActorData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
