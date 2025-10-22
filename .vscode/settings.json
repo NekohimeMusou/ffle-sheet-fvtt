@@ -28,6 +28,7 @@
     "flexcol",
     "flexrow",
     "fvtt",
+    "placeables",
     "prosemirror"
   ]
 }

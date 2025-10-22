@@ -62,7 +62,10 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
   static async #rollAttack(event, target) {
     event.preventDefault();
     const defenseType = target.dataset.defense;
-    await this.actor.rollAttack(defenseType);
+
+    const targets = game.user.targets;
+
+    await this.actor.rollAttack(targets, defenseType);
   }
 
   /** @override */
