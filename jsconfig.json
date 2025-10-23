@@ -6,7 +6,8 @@
     "paths": {
       "@client/*": ["./foundry/client/*"],
       "@common/*": ["./foundry/common/*"]
-    }
+    },
+    "strict": true
   },
   "exclude": ["node_modules", "**/node_modules/*"],
   "include": [

@@ -21,11 +21,11 @@ function generateSchema() {
     // DEBUG: Temporary fields for testing dice rolls
     damageRoll: new fields.StringField({
       validate: (input) => Roll.validate(input),
-      validationError: "Not a valid dice roll string.",
+      validationError: "Not a valid dice roll.",
       initial: "1d8",
     }),
     attackMod: new fields.NumberField({ integer: true, initial: 0 }),
-    attackEED: new fields.NumberField({ integer: true, initial: 3 }),
+    eedFactor: new fields.NumberField({ integer: true, initial: 3 }),
     targetDefense: new fields.StringField({
       choices: FFLE.defenseTypes,
       initial: "phys",

@@ -26,7 +26,19 @@
       "attackMod": "Attack Mod",
       "damageRoll": "Damage Roll",
       "targetDefense": "Target Defense",
-      "rollAttack": "Roll Attack"
+      "rollAttack": "Roll Attack",
+      "attack": {
+        "attackRoll": "Attack Roll",
+        "result": {
+          "msg": "{hitOrMiss} Margin: {margin}",
+          "hit": "Success!",
+          "miss": "Missed!",
+          "EED": "EED generated: {eed}"
+        },
+        "attackResult": "{hitOrMiss} Margin: {margin}",
+        "vsDefense": "vs. {defenseType} Defense",
+        "targets": "Targets"
+      }
     }
   },
   "TYPES": {
