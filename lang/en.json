@@ -10,6 +10,11 @@
       "mag": "Magic",
       "skill": "Skill"
     },
+    "defenseTypesAbbrev": {
+      "phys": "PD",
+      "mag": "MD",
+      "skill": "SD"
+    },
     "sheet": {
       "defenses": "Defenses"
     },

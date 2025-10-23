@@ -2,12 +2,12 @@
 /** @import { DefenseType } from "../../config/config.mjs" */
 const { Roll } = foundry.dice;
 const { ChatMessage } = foundry.documents;
+const { renderTemplate } = foundry.applications.handlebars;
 
 /**
  * The data context for an individual target, associated with one HBS template instance.
  * @typedef {Object} TargetOutputData
  * @prop {string} targetName
- * @prop {DefenseType} defenseType
  * @prop {number} defenseValue
  * @prop {boolean} attackSuccess
  * @prop {number} margin
@@ -15,6 +15,13 @@ const { ChatMessage } = foundry.documents;
  */
 
 export default class FFLEActor extends foundry.documents.Actor {
+  /**
+   * Chat template to use for attack rolls
+   * @readonly
+   */
+  static ATTACK_ROLL_TEMPLATE =
+    "systems/ffle-sheet/templates/chat/attack-card.hbs";
+
   // Get list of targets
   // Make d20 roll
   // Compare result to each target's defense
@@ -24,18 +31,20 @@ export default class FFLEActor extends foundry.documents.Actor {
    * @param {FFLEActor} target
    * @param {DefenseType} defenseType
    * @param {number} attackTotal
-   * @param {number} eedFactor
    * @returns {TargetOutputData}
    */
   async #processTarget(target, defenseType, attackTotal) {
-    /** @type {number} */
+    /**
+     * @type {number}
+     * @default 10
+     */
     const defenseValue = target.system[defenseType] ?? 10;
 
     const margin = attackTotal - defenseValue;
 
     const attackSuccess = margin >= 0;
 
-    /** 
+    /**
      * @type {number}
      * @default 1
      */
@@ -45,7 +54,6 @@ export default class FFLEActor extends foundry.documents.Actor {
 
     return {
       targetName: target.name,
-      defenseType,
       defenseValue,
       attackSuccess,
       margin,
@@ -57,28 +65,37 @@ export default class FFLEActor extends foundry.documents.Actor {
    * Make an attack roll. Display a chat card with the d20 roll, then for each target,
    * compare the attack roll to their AC and append a partial showing whether the attack hit
    * and, if so, how many EED are generated.
-   * @param {Set<Token>} targets
+   * @param {Token[]} targets
    * @param {DefenseType} defenseType
    */
   async rollAttack(targets, defenseType) {
     foundry.ui.notifications.info(
       `Attack event handler triggered: ${defenseType}`,
     );
-    const defense = 10;
 
-    const { attackMod, eedFactor } = this.system;
+    const { attackMod } = this.system;
     const formula = `1d20+${attackMod}`;
     const attackRoll = await new Roll(formula, this.getRollData()).roll();
 
     const total = attackRoll.total;
 
-    const threshold = total - defense;
-    const success = threshold >= 0;
-    const EED = Math.floor(threshold / eedFactor);
+    /** @type {TargetOutputData[]} */
+    const targetData = await Promise.all(
+      targets.map(async (target) => {
+        this.#processTarget(target, defenseType, total);
+      }),
+    );
 
-    const msg = success ? `Hit! EED: ${EED}` : "Missed!";
+    const context = {
+      defenseType,
+      attackRoll: await attackRoll.render(),
+      targetData,
+    };
 
-    const content = `<h1>${msg}</h1>${await attackRoll.render()}`;
+    const content = await renderTemplate(
+      FFLEActor.ATTACK_ROLL_TEMPLATE,
+      context,
+    );
 
     const speaker = ChatMessage.getSpeaker({
       scene: game.scenes.current,
@@ -91,6 +108,7 @@ export default class FFLEActor extends foundry.documents.Actor {
       content,
       style: CONST.CHAT_MESSAGE_STYLES.EMOTE,
       speaker,
+      rolls: [attackRoll],
     };
 
     await ChatMessage.create(chatData);
