@@ -3,3 +3,6 @@
 {{{attackRoll}}}
 <h2>{{localize "FFLE.debug.attack.targets"}}</h2>
 {{! Target partials with #each }}
+{{#each targetData}}
+{{> "systems/ffle-sheet/templates/chat/attack-card.hbs"}}
+{{/each}}
