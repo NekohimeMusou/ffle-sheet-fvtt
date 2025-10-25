@@ -1,7 +1,4 @@
-<h3>{{targetName}}</h3>
-<p>{{localize (concat "FFLE.defenseTypesAbbrev." ../defenseType)}}: {{defenseValue}}</p>
-<p>{{localize "FFLE.debug.attack.result.msg"
-      hitOrMiss={{localize (concat "FFLE.debug.attack.result." (ifThen attackSuccess "hit" "miss"))}}
-      margin=margin
-  }}</p>
-<p>{{localize "FFLE.debug.attack.result.EED" eed=eed}}</p>
+<h4>{{targetName}}: {{localize (concat "FFLE.debug.attack.result." (ifThen attackSuccess "hit" "miss"))}}</h4>
+<p>{{localize (concat "FFLE.defenseTypesAbbrev." defenseType)}}: {{defenseValue}}</p>
+<p>{{localize "FFLE.debug.attack.result.margin" margin=margin}}</p>
+{{#if (gt eed 0)}}<p>{{localize "FFLE.debug.attack.result.EED" eed=eed}}</p>{{/if}}

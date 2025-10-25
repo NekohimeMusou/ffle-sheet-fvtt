@@ -2,11 +2,13 @@ import { FFLE } from "./config/config.mjs";
 import { ACTORMODELS } from "./data-models/actor-data-models.mjs";
 import FFLEActor from "./documents/actor/actor.mjs";
 import FFLEActorSheet from "./documents/actor/actor-sheet.mjs";
+import { templatePaths } from "./config/templates.mjs";
 
 const { Hooks } = foundry.helpers;
 const { Actors } = foundry.documents.collections;
+const { loadTemplates } = foundry.applications.handlebars;
 
-Hooks.once("init", () => {
+Hooks.once("init", async () => {
   console.log("FFLE | Initializing FFLE Sheet game system");
 
   // Add config constants
@@ -17,6 +19,7 @@ Hooks.once("init", () => {
   registerDataModels();
   registerDocumentClasses();
   registerDocumentSheets();
+  await preloadHandlebarsTemplates();
 });
 
 function registerDataModels() {
@@ -34,4 +37,8 @@ function registerDocumentSheets() {
     types: ["pc", "npc"],
     makeDefault: true,
   });
+}
+
+async function preloadHandlebarsTemplates() {
+  await loadTemplates(templatePaths);
 }

@@ -35,12 +35,11 @@
       "attack": {
         "attackRoll": "Attack Roll",
         "result": {
-          "msg": "{hitOrMiss} Margin: {margin}",
-          "hit": "Success!",
-          "miss": "Missed!",
+          "margin": "Margin: {margin}",
+          "hit": "Hit!",
+          "miss": "Miss!",
           "EED": "EED generated: {eed}"
         },
-        "attackResult": "{hitOrMiss} Margin: {margin}",
         "vsDefense": "vs. {defenseType} Defense",
         "targets": "Targets"
       }

@@ -20,7 +20,7 @@ export default class FFLEActor extends foundry.documents.Actor {
    * @readonly
    */
   static ATTACK_ROLL_TEMPLATE =
-    "systems/ffle-sheet/templates/chat/attack-card.hbs";
+    "systems/ffle-sheet/templates/chat/attack/attack-card.hbs";
 
   // Get list of targets
   // Make d20 roll
@@ -28,17 +28,18 @@ export default class FFLEActor extends foundry.documents.Actor {
 
   /**
    * Get the data from a target and generate the context for its respective Handlebars part
-   * @param {FFLEActor} target
+   * @param {Token} target
    * @param {DefenseType} defenseType
    * @param {number} attackTotal
    * @returns {TargetOutputData}
    */
   async #processTarget(target, defenseType, attackTotal) {
+    const actor = target.actor;
     /**
      * @type {number}
      * @default 10
      */
-    const defenseValue = target.system[defenseType] ?? 10;
+    const defenseValue = actor.system.defense[defenseType] ?? 10;
 
     const margin = attackTotal - defenseValue;
 
@@ -81,9 +82,9 @@ export default class FFLEActor extends foundry.documents.Actor {
 
     /** @type {TargetOutputData[]} */
     const targetData = await Promise.all(
-      targets.map(async (target) => {
-        this.#processTarget(target, defenseType, total);
-      }),
+      targets.map(async (target) =>
+        this.#processTarget(target, defenseType, total),
+      ),
     );
 
     const context = {

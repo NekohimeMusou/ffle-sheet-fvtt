@@ -1,8 +1,8 @@
 <h2>{{localize "FFLE.debug.attack.attackRoll"}}</h2>
-<h3>{{localize "FFLE.debug.attack.vsDefense" defenseType=defenseType}}</h3>
+<h3>{{localize "FFLE.debug.attack.vsDefense" defenseType=(localize (concat "FFLE.defenseTypes." defenseType))}}</h3>
 {{{attackRoll}}}
 <h2>{{localize "FFLE.debug.attack.targets"}}</h2>
 {{! Target partials with #each }}
 {{#each targetData}}
-{{> "systems/ffle-sheet/templates/chat/attack-card.hbs"}}
+{{> "systems/ffle-sheet/templates/chat/attack/target-part.hbs" defenseType=../defenseType}}
 {{/each}}
