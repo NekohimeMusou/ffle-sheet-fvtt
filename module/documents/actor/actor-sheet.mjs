@@ -1,7 +1,5 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
-const { TextEditor } = foundry.applications.ux;
-const { mergeObject } = foundry.utils;
 
 export default class FFLEActorSheet extends HandlebarsApplicationMixin(
   ActorSheetV2,
@@ -65,30 +63,26 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
 
     const targets = [...game.user.targets];
 
+    if (targets.length < 1) {
+      const { notifications } = foundry.ui;
+      const msg = game.i18n.localize("FFLE.error.noTargetSelected");
+      notifications.warn(msg);
+      return;
+    }
+
     await this.actor.rollAttack(targets, defenseType);
   }
 
   /** @override */
   async _prepareContext(_options) {
-    const context = {};
-
-    const FFLE = CONFIG.FFLE;
-    const actor = this.actor;
-
-    /** @type {Record<string, foundry.applications.types.ApplicationTab>} */
-    const tabs = this._prepareTabs("primary");
-
-    const isEditable = this.isEditable;
-
-    mergeObject(context, {
-      FFLE,
-      actor,
-      system: actor.system,
-      tabs,
-      isEditable,
-    });
-
-    return context;
+    return {
+      FFLE: CONFIG.FFLE,
+      actor: this.actor,
+      system: this.actor.system,
+      /** @type {Record<string, foundry.applications.types.ApplicationTab>} */
+      tabs: this._prepareTabs("primary"),
+      isEditable: this.isEditable,
+    };
   }
 
   /** @override */
@@ -99,6 +93,7 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
         break;
       case "notes":
         {
+          const { TextEditor } = foundry.applications.ux;
           const enrichedNotes = await TextEditor.enrichHTML(
             this.actor.system.notes,
             {

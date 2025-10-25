@@ -19,7 +19,7 @@ function generateSchema() {
     }),
 
     // DEBUG: Temporary fields for testing dice rolls
-    damageRoll: new fields.StringField({
+    damageFormula: new fields.StringField({
       validate: (input) => Roll.validate(input),
       validationError: "Not a valid dice roll.",
       initial: "1d8",

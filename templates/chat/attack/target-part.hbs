@@ -2,4 +2,8 @@
 <div>{{localize (concat "FFLE.defenseTypesAbbrev." defenseType)}}: {{defenseValue}}</div>
 <div>{{localize "FFLE.debug.attack.result.margin" margin=margin}}</div>
 {{#if (gt eed 0)}}<div>{{localize "FFLE.debug.attack.result.EED" eed=eed}}</div>{{/if}}
+{{#if attackSuccess}}
+<div><strong>{{localize "FFLE.debug.attack.result.damage"}}:</strong></div>
+{{{damageRender}}}
+{{/if}}
 {{#unless @last}}<hr />{{/unless}}

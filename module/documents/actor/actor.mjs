@@ -1,8 +1,10 @@
 /** @import { Token } from "@client/canvas/placeables/_module.mjs" */
+/** @import { Roll } from "@client/dice/_module.mjs" */
 /** @import { DefenseType } from "../../config/config.mjs" */
 const { Roll } = foundry.dice;
 const { ChatMessage } = foundry.documents;
 const { renderTemplate } = foundry.applications.handlebars;
+const { mergeObject } = foundry.utils;
 
 /**
  * The data context for an individual target, associated with one HBS template instance.
@@ -12,6 +14,8 @@ const { renderTemplate } = foundry.applications.handlebars;
  * @prop {boolean} attackSuccess
  * @prop {number} margin
  * @prop {number} eed
+ * @prop {Roll} [damageRoll]
+ * @prop {string} [damageRender]
  */
 
 export default class FFLEActor extends foundry.documents.Actor {
@@ -22,16 +26,31 @@ export default class FFLEActor extends foundry.documents.Actor {
   static ATTACK_ROLL_TEMPLATE =
     "systems/ffle-sheet/templates/chat/attack/attack-card.hbs";
 
-  // Get list of targets
-  // Make d20 roll
-  // Compare result to each target's defense
+  /**
+   * Process all targeted tokens.
+   * @param {Token[]} targets
+   * @param {DefenseType} defenseType
+   * @param {number} attackTotal
+   * @returns {Promise<TargetOutputData[]>}
+   */
+  async #processAllTargets(targets, defenseType, attackTotal) {
+    return await Promise.all(
+      targets.map(async (target) => {
+        const data = await this.#processTarget(target, defenseType, attackTotal);
+        if (data.damageRoll != undefined) {
+          data.damageRender = await data.damageRoll.render();
+        }
+        return data;
+      }),
+    );
+  }
 
   /**
    * Get the data from a target and generate the context for its respective Handlebars part
    * @param {Token} target
    * @param {DefenseType} defenseType
    * @param {number} attackTotal
-   * @returns {TargetOutputData}
+   * @returns {Promise<TargetOutputData>}
    */
   async #processTarget(target, defenseType, attackTotal) {
     const actor = target.actor;
@@ -53,13 +72,23 @@ export default class FFLEActor extends foundry.documents.Actor {
 
     const eed = Math.floor(margin / eedFactor);
 
-    return {
+    const targetData = {
       targetName: target.name,
       defenseValue,
       attackSuccess,
       margin,
       eed,
     };
+
+    if (attackSuccess) {
+      const { damageFormula } = this.system;
+
+      const damageRoll = await new Roll(damageFormula, this.getRollData()).evaluate();
+
+      mergeObject(targetData, { damageRoll });
+    }
+
+    return targetData;
   }
 
   /**
@@ -81,11 +110,11 @@ export default class FFLEActor extends foundry.documents.Actor {
     const total = attackRoll.total;
 
     /** @type {TargetOutputData[]} */
-    const targetData = await Promise.all(
-      targets.map(async (target) =>
-        this.#processTarget(target, defenseType, total),
-      ),
-    );
+    const targetData = await this.#processAllTargets(targets, defenseType, total);
+
+    const damageRolls = targetData.filter((tgt) => tgt.damageRoll).map((tgt) => tgt.damageRoll);
+
+    const rolls = [attackRoll, ...damageRolls];
 
     const context = {
       defenseType,
@@ -109,7 +138,7 @@ export default class FFLEActor extends foundry.documents.Actor {
       content,
       style: CONST.CHAT_MESSAGE_STYLES.EMOTE,
       speaker,
-      rolls: [attackRoll],
+      rolls,
     };
 
     await ChatMessage.create(chatData);

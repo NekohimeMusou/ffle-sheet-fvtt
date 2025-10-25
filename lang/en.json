@@ -29,7 +29,7 @@
     "debug": {
       "attackData": "Attack Data",
       "attackMod": "Attack Mod",
-      "damageRoll": "Damage Roll",
+      "damageFormula": "Damage Formula",
       "targetDefense": "Target Defense",
       "rollAttack": "Roll Attack",
       "attack": {
@@ -38,11 +38,15 @@
           "margin": "Margin: {margin}",
           "hit": "Hit!",
           "miss": "Miss!",
-          "EED": "EED generated: {eed}"
+          "EED": "EED generated: {eed}",
+          "damage": "Damage"
         },
         "vsDefense": "vs. {defenseType} Defense",
         "targets": "Targets"
       }
+    },
+    "error": {
+      "noTargetSelected": "Please select one or more targets."
     }
   },
   "TYPES": {
