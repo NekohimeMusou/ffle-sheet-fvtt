@@ -1,8 +1,10 @@
 # Contributing to the Project
 
+Please keep in mind our [Code of Conduct](https://github.com/NekohimeMusou/ffle-sheet-fvtt/blob/main/CODE_OF_CONDUCT.md).
+
 ## Installation
 
-If all you want to do is use the system in Foundry, the installation instructions in the README will work. If you're looking to contribute, such as by making a pull request, you can get intellisense, linting, and `i18n-ally` support by installing the dependencies.
+If all you want to do is use the system in Foundry, the installation instructions in the README will work. If you're looking to contribute or poke around, you can install the dev dependencies to get better intellisense, linting via `eslint` and `stylelint`, formatting via `prettier`, and support for VS Code's `i18n-ally` extension.
 
 1. Install node.js. The generally-recommended method is to use [nvm](https://github.com/nvm-sh/nvm); you can also download binaries from [nodejs.org](https://nodejs.org/), including a Windows installer if you prefer that method.
 

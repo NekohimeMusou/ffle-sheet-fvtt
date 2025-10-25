@@ -10,10 +10,14 @@ This system is in a prototype state right now. Anything at all could change righ
 
 ## Installation
 
-For now, just download the repo as a .zip and unzip it into a folder named `ffle-sheet` in your Foundry systems folder. When it's somewhat stable I'll start doing releases.
+For now, just download the repo as a .zip and unzip it into a folder named `ffle-sheet` in your Foundry systems folder. If I feel like it's at a point where it's useful in a game I'll start doing releases.
 
-If you want to contribute, see [CONTRIBUTING.md](https://github.com/NekohimeMusou/ffle-sheet-fvtt/blob/main/CONTRIBUTING.md) for instructions on setting up development dependencies.
+If you want to contribute, or just poke around in the source code, see [CONTRIBUTING.md](https://github.com/NekohimeMusou/ffle-sheet-fvtt/blob/main/CONTRIBUTING.md) for instructions on installing the development dependencies.
 
 ## Special Thanks
 
 CSS stolen from [Asacolips' Boilerplate System](https://github.com/asacolips-projects/boilerplate), without which I might never have learned how to Foundry. Thank you!
+
+## License
+
+This system is available under the [MIT License](https://opensource.org/license/MIT). See [LICENSE.md](https://github.com/NekohimeMusou/ffle-sheet-fvtt/blob/main/LICENSE.md) for the full license text.
