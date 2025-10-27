@@ -1,9 +1,7 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-export default class FFLEActorSheet extends HandlebarsApplicationMixin(
-  ActorSheetV2,
-) {
+export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes: ["ffle", "sheet", "actor"],
@@ -16,6 +14,7 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
     },
     actions: {
       rollAttack: this.#rollAttack,
+      editImage: this.#onEditImage,
     },
   };
 
@@ -71,6 +70,25 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
     }
 
     await this.actor.rollAttack(targets, defenseType);
+  }
+
+  /**
+   * Handle image editing
+   * @this {FFLEActorSheet}
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target
+   */
+  static async #onEditImage(_event, target) {
+    const field = target.dataset.field || "img";
+    const current = foundry.utils.getProperty(this.document, field);
+
+    const fp = new foundry.applications.apps.FilePicker({
+      type: "image",
+      current,
+      callback: (path) => this.document.update({ [field]: path }),
+    });
+
+    fp.render(true);
   }
 
   /** @override */
