@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import globals from "globals";
 import { defineConfig, globalIgnores } from "eslint/config";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 const FOUNDRY_GLOBALS = {
   CONFIG: "readonly",
@@ -20,4 +21,5 @@ export default defineConfig([
     },
   },
   globalIgnores(["foundry/**/*"]),
+  eslintConfigPrettier,
 ]);
