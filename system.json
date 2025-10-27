@@ -2,7 +2,7 @@
   "id": "ffle-sheet",
   "title": "FF Legend Edition (Unofficial)",
   "description": "Unofficial Foundry VTT system for FF Legend Edition. This project is not endorsed by or affiliated with the designers of the game. Please do not contact them for support.",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "compatibility": {
     "minimum": 12,
     "verified": 13
