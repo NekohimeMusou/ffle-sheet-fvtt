@@ -30,6 +30,7 @@ function generateSchema() {
       choices: FFLE.defenseTypes,
       initial: "phys",
     }),
+    noEED: new fields.BooleanField(),
   };
 }
 
