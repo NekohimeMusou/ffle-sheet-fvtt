@@ -40,8 +40,7 @@ const negativeConditions = {
   petrify: "FFLE.conditions.petrify",
   poison: "FFLE.conditions.poison",
   prone: "FFLE.conditions.prone",
-  // Missing icon
-  // seal: "FFLE.conditions.seal",
+  seal: "FFLE.conditions.seal",
   slow: "FFLE.conditions.slow",
   sleep: "FFLE.conditions.sleep",
   silence: "FFLE.conditions.silence",
@@ -72,6 +71,31 @@ const statusConditions = {
   ...positiveConditions,
 };
 
+/** @type {Record<StatusCondition, number} */
+const conditionWeights = {
+  battered: 1,
+  berserk: 1,
+  blind: 1,
+  bleeding: 1,
+  charm: 2,
+  confuse: 1,
+  entangled: 1,
+  // Not given
+  knockdown: 1,
+  paralyzed: 2,
+  petrify: 3,
+  poison: 1,
+  // Not given
+  prone: 1,
+  seal: 2,
+  slow: 2,
+  sleep: 1,
+  silence: 2,
+  stop: 3,
+  stun: 1,
+  zombie: 2,
+};
+
 export const FFLE = {
   PACKAGE_ID,
   resourceTypes,
@@ -80,4 +104,5 @@ export const FFLE = {
   negativeConditions,
   positiveConditions,
   statusConditions,
+  conditionWeights,
 };
