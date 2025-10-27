@@ -16,6 +16,10 @@
       "skill": "SD"
     },
     "sheet": {
+      "npc": {
+        "tier": "Tier",
+        "traitMod": "Trait Modifier"
+      },
       "defenses": "Defenses"
     },
     "tab": {
@@ -25,6 +29,35 @@
     "dice": {
       "eed": "Extra Effort Dice",
       "eedShort": "EED"
+    },
+    "conditions": {
+      "battered": "Battered",
+      "berserk": "Berserk",
+      "blind": "Blind",
+      "bleeding": "Bleeding",
+      "charm": "Charm",
+      "confuse": "Confuse",
+      "entangled": "Entangled",
+      "knockdown": "Knockdown",
+      "paralyzed": "Paralyzed",
+      "petrify": "Petrify",
+      "poison": "Poison",
+      "prone": "Prone",
+      "seal": "Seal",
+      "slow": "Slow",
+      "sleep": "Sleep",
+      "silence": "Silence",
+      "stop": "Stop",
+      "stun": "Stun",
+      "zombie": "Zombie",
+      "autoLife": "Auto-Life",
+      "float": "Float",
+      "haste": "Haste",
+      "invisible": "Invisible",
+      "protect": "Protect",
+      "reflect": "Reflect",
+      "regen": "Regen",
+      "shell": "Shell"
     },
     "debug": {
       "attackData": "Attack Data",
@@ -43,6 +76,35 @@
         },
         "vsDefense": "vs. {defenseType} Defense",
         "targets": "Targets"
+      }
+    },
+    "npc": {
+      "tier": {
+        "normal": "Normal",
+        "notorious": "Notorious",
+        "boss": "Boss",
+        "endBoss": "End Boss"
+      },
+      "category": {
+        "aerial": "Aerial",
+        "amorph": "Amorph",
+        "aquan": "Aquan",
+        "arcana": "Arcana",
+        "beast": "Beast",
+        "construct": "Construct",
+        "demon": "Demon",
+        "dragon": "Dragon",
+        "humanoid": "Humanoid",
+        "insect": "Insect",
+        "plant": "Plant",
+        "undead": "Undead"
+      },
+      "traitMod": {
+        "initiative": "Initiative",
+        "hpMp": "HP/MP",
+        "attack": "Attack",
+        "defense": "Defense",
+        "skillDefense": "Skill Defense"
       }
     },
     "error": {

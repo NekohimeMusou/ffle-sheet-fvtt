@@ -3,6 +3,7 @@ import { ACTORMODELS } from "./data-models/actor-data-models.mjs";
 import FFLEActor from "./documents/actor/actor.mjs";
 import FFLEActorSheet from "./documents/actor/actor-sheet.mjs";
 import { templatePaths } from "./config/templates.mjs";
+import { configureStatusEffects } from "./config/statuses.mjs";
 
 const { Hooks } = foundry.helpers;
 const { Actors } = foundry.documents.collections;
@@ -19,6 +20,7 @@ Hooks.once("init", async () => {
   registerDataModels();
   registerDocumentClasses();
   registerDocumentSheets();
+  configureStatusEffects();
   await preloadHandlebarsTemplates();
 });
 

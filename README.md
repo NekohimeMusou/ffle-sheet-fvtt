@@ -6,7 +6,7 @@ Please don't use our channels to be a jackass to people. For further information
 
 ## Prototype Notice
 
-This system is in a prototype state right now. Anything at all could change right now, and neither backward nor forward compatibility are guaranteed. I extremely don't recommend using this for actual play at the moment.
+This system is in a prototype state right now. Anything at all could change right now, and neither backward nor forward compatibility are guaranteed. I extremely don't recommend using this for actual play at the moment. If I do make something meant to be used, it'll most likely be a new one that's more robustly designed from the start.
 
 ## Installation
 

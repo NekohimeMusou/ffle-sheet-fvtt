@@ -23,12 +23,15 @@
   "i18n-ally.localesPaths": ["lang", "foundry/lang"],
   "i18n-ally.keystyle": "nested",
   "cSpell.words": [
+    "amorph",
+    "Aquan",
     "charname",
     "ffle",
     "flexcol",
     "flexrow",
     "fvtt",
     "placeables",
-    "prosemirror"
+    "prosemirror",
+    "regen"
   ]
 }
