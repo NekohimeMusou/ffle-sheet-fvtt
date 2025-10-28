@@ -5,15 +5,6 @@ import { FFLE } from "../../config/config.mjs";
 
 const fields = foundry.data.fields;
 
-function generateTraitModSchema() {
-  return {
-    integer: true,
-    min: 0,
-    max: 3,
-    initial: 0,
-  };
-}
-
 // function generateConditionSchema() {
 //   return {
 //     battered: new fields.BooleanField(),
@@ -39,6 +30,13 @@ function generateTraitModSchema() {
 // }
 
 function generateSchema() {
+  const traitModOptions = {
+    integer: true,
+    min: 0,
+    max: 3,
+    initial: 0,
+  };
+
   return {
     apl: new fields.NumberField({
       integer: true,
@@ -54,11 +52,11 @@ function generateSchema() {
     }),
 
     traitMods: new fields.SchemaField({
-      initiative: new fields.NumberField(generateTraitModSchema()),
-      hpMp: new fields.NumberField(generateTraitModSchema()),
-      attack: new fields.NumberField(generateTraitModSchema()),
-      defense: new fields.NumberField(generateTraitModSchema()),
-      skillDefense: new fields.NumberField(generateTraitModSchema()),
+      initiative: new fields.NumberField(traitModOptions),
+      hpMp: new fields.NumberField(traitModOptions),
+      attack: new fields.NumberField(traitModOptions),
+      defense: new fields.NumberField(traitModOptions),
+      skillDefense: new fields.NumberField(traitModOptions),
     }),
 
     extraMods: new fields.SchemaField({
