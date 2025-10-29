@@ -1,7 +1,7 @@
-/** @import FFLEActor from "../../documents/actor/actor.mjs" */
-/** @import { NPCTier } from "../../config/config.mjs" */
-import FFLEBaseActorData from "./base/base-actor.mjs";
-import { FFLE } from "../../config/config.mjs";
+/** @import { NPCTier } from "../../../config/config.mjs" */
+import FFLEBaseActorData from "../base/base-actor.mjs";
+import { FFLE } from "../../../config/config.mjs";
+import { getNPCAbility } from "./ability-tables.mjs";
 
 const fields = foundry.data.fields;
 
@@ -38,14 +38,6 @@ function generateSchema() {
   };
 
   return {
-    apl: new fields.NumberField({
-      integer: true,
-      positive: true,
-      min: 1,
-      max: 20,
-      initial: 1,
-    }),
-
     npcTier: new fields.StringField({
       choices: FFLE.npcTiers,
       initial: "normal",
@@ -121,8 +113,8 @@ export default class NPCData extends FFLEBaseActorData {
     // /** @type {FFLEActor} */
     // const actor = this.parent;
 
-    // /** @type {number} */
-    // const apl = this.apl ?? 1;
+    /** @type {number} */
+    const level = this.level ?? 1;
 
     /** @type {NPCTier} */
     const npcTier = this.npcTier ?? "normal";
@@ -130,19 +122,68 @@ export default class NPCData extends FFLEBaseActorData {
     // Retrieve defenses, SD, attack, HP/MP, initiative
     // Tier + bonuses
 
+    /** @type {Record<string, boolean>} */
+    const { swapHpMp, swapPdSd } = this.extraMods;
+
+    this.initiative = getNPCAbility(
+      "initiative",
+      npcTier,
+      level,
+      this.traitMods.initiative,
+    );
+
+    const hpMpTrait = getNPCAbility(
+      "hpMp",
+      npcTier,
+      level,
+      this.traitMods.hpMp,
+    );
+
+    this.hp.max = swapHpMp ? Math.floor(hpMpTrait / 2) : hpMpTrait;
+    this.mp.max = swapHpMp ? hpMpTrait : Math.floor(hpMpTrait / 2);
+
+    this.attackMod = getNPCAbility(
+      "attack",
+      npcTier,
+      level,
+      this.traitMods.attack,
+    );
+
+    this.defense.skill = getNPCAbility(
+      "skillDefense",
+      npcTier,
+      level,
+      this.traitMods.defense,
+    );
+
+    const defenseTrait = getNPCAbility(
+      "defense",
+      npcTier,
+      level,
+      this.traitMods.defense,
+    );
+
+    this.defense.phys = swapPdSd ? Math.floor(defenseTrait / 2) : defenseTrait;
+    this.defense.mag = swapPdSd ? defenseTrait : Math.floor(defenseTrait / 2);
+
     // Calculate ability modifier
     this.abilityModifier = NPCData.ABILITY_MODIFIERS[npcTier] ?? 2;
 
     this.noEED = ["normal", "notorious"].includes(npcTier);
 
-    // Add trait points too
     /** @type {number} */
-    const totalPoints = (this.extraPoints ?? 0) + (this.statusPoints ?? 0);
+    const traitPoints = Object.values(this.traitMods).reduce(
+      (prev, curr) => prev + curr,
+      0,
+    );
+    /** @type {number} */
+    const totalPoints =
+      (this.extraPoints ?? 0) + (this.statusPoints ?? 0) + traitPoints;
     this.totalPoints = totalPoints;
 
     const treasureDieSize = NPCData.TREASURE_DIE_SIZES[npcTier];
 
-    const treasureDice = Math.floor(totalPoints / treasureDieSize);
+    const treasureDice = Math.max(1, Math.floor(totalPoints / treasureDieSize));
 
     this.treasure = {
       dice: treasureDice,

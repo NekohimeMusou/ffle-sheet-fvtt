@@ -7,7 +7,15 @@ const { Roll } = foundry.dice;
 /** Generate the base data schema for actors. */
 function generateSchema() {
   return {
-    notes: new fields.HTMLField({ initial: "<p>Test</p>" }),
+    level: new fields.NumberField({
+      integer: true,
+      positive: true,
+      min: 1,
+      max: 20,
+      initial: 1,
+    }),
+
+    notes: new fields.HTMLField(),
 
     hp: new fields.SchemaField(generateResourceSchema()),
     mp: new fields.SchemaField(generateResourceSchema()),
@@ -42,5 +50,13 @@ function generateSchema() {
 export default class FFLEBaseActorData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return generateSchema();
+  }
+
+  get halfLevel() {
+    return Math.max(1, Math.floor(this.level / 2));
+  }
+
+  get quarterLevel() {
+    return Math.max(1, Math.floor(this.level / 4));
   }
 }

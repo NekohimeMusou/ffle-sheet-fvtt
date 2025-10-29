@@ -20,11 +20,13 @@
         "tier": "Tier",
         "traitMod": "Trait Modifier"
       },
-      "defenses": "Defenses"
+      "defenses": "Defenses",
+      "level": "Level"
     },
     "tab": {
       "notes": "Notes",
-      "pc": "PC"
+      "pc": "PC",
+      "npc": "NPC"
     },
     "dice": {
       "eed": "Extra Effort Dice",

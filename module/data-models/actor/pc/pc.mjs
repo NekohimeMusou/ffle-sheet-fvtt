@@ -1,4 +1,4 @@
-import FFLEBaseActorData from "./base/base-actor.mjs";
+import FFLEBaseActorData from "../base/base-actor.mjs";
 
 /**
  * Data model for PCs.

@@ -1,5 +1,5 @@
-import NPCData from "./actor/npc.mjs";
-import PCData from "./actor/pc.mjs";
+import NPCData from "./actor/npc/npc.mjs";
+import PCData from "./actor/pc/pc.mjs";
 
 export const ACTORMODELS = {
   pc: PCData,

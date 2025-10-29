@@ -1,7 +1,9 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
+export default class FFLEActorSheet extends HandlebarsApplicationMixin(
+  ActorSheetV2,
+) {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes: ["ffle", "sheet", "actor"],
@@ -28,10 +30,10 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
     },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
     pc: {
-      template: "systems/ffle-sheet/templates/sheets/actor/tabs/debug.hbs",
+      template: "systems/ffle-sheet/templates/sheets/actor/tabs/pc.hbs",
       templates: [
-        "systems/ffle-sheet/templates/sheets/actor/debug/defenses.hbs",
-        "systems/ffle-sheet/templates/sheets/actor/debug/attack.hbs",
+        "systems/ffle-sheet/templates/sheets/actor/pc/defenses.hbs",
+        "systems/ffle-sheet/templates/sheets/actor/pc/attack.hbs",
       ],
       scrollable: [""],
     },
@@ -93,6 +95,12 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
 
   /** @override */
   async _prepareContext(_options) {
+    const { TextEditor } = foundry.applications.ux;
+    const enrichedNotes = await TextEditor.enrichHTML(this.actor.system.notes, {
+      secrets: this.actor.isOwner,
+      rollData: this.actor.getRollData(),
+      relativeTo: this.actor,
+    });
     return {
       FFLE: CONFIG.FFLE,
       actor: this.actor,
@@ -100,32 +108,13 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
       /** @type {Record<string, foundry.applications.types.ApplicationTab>} */
       tabs: this._prepareTabs("primary"),
       isEditable: this.isEditable,
+      enrichedNotes,
     };
   }
 
   /** @override */
   async _preparePartContext(partId, context) {
-    switch (partId) {
-      case "pc":
-        context.tab = context.tabs[partId];
-        break;
-      case "notes":
-        {
-          const { TextEditor } = foundry.applications.ux;
-          const enrichedNotes = await TextEditor.enrichHTML(
-            this.actor.system.notes,
-            {
-              secrets: this.actor.isOwner,
-              rollData: this.actor.getRollData(),
-              relativeTo: this.actor,
-            },
-          );
-
-          context.enrichedNotes = enrichedNotes;
-          context.tab = context.tabs[partId];
-        }
-        break;
-    }
+    context.tab = context.tabs[partId];
 
     return context;
   }
