@@ -27,7 +27,7 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
       template: "systems/ffle-sheet/templates/sheets/actor/resources.hbs",
     },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
-    debug: {
+    pc: {
       template: "systems/ffle-sheet/templates/sheets/actor/tabs/debug.hbs",
       templates: [
         "systems/ffle-sheet/templates/sheets/actor/debug/defenses.hbs",
@@ -44,9 +44,9 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
   /** @inheritdoc */
   static TABS = {
     primary: {
-      tabs: [{ id: "debug" }, { id: "notes" }],
+      tabs: [{ id: "pc" }, { id: "notes" }],
       labelPrefix: "FFLE.tab",
-      initial: "debug",
+      initial: "pc",
     },
   };
 
@@ -106,7 +106,7 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
   /** @override */
   async _preparePartContext(partId, context) {
     switch (partId) {
-      case "debug":
+      case "pc":
         context.tab = context.tabs[partId];
         break;
       case "notes":
