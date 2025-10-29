@@ -1,3 +1,5 @@
+/** @import FFLEActor from "./actor.mjs" */
+
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
@@ -95,21 +97,40 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
 
   /** @override */
   async _prepareContext(_options) {
+    const context = {
+      FFLE: CONFIG.FFLE,
+      /** @type {Record<string, foundry.applications.types.ApplicationTab>} */
+      tabs: this._prepareTabs("primary"),
+      isEditable: this.isEditable,
+    };
+
     const { TextEditor } = foundry.applications.ux;
     const enrichedNotes = await TextEditor.enrichHTML(this.actor.system.notes, {
       secrets: this.actor.isOwner,
       rollData: this.actor.getRollData(),
       relativeTo: this.actor,
     });
-    return {
-      FFLE: CONFIG.FFLE,
-      actor: this.actor,
-      system: this.actor.system,
-      /** @type {Record<string, foundry.applications.types.ApplicationTab>} */
-      tabs: this._prepareTabs("primary"),
-      isEditable: this.isEditable,
+
+    /** @type {FFLEActor} */
+    const actor = this.actor;
+    const system = actor.system;
+
+    if (actor.type === "npc") {
+      const validBonusLevels = new Array((system.maxBonusLevel ?? 0) + 1).map(
+        (_, index) => index,
+      );
+      foundry.utils.mergeObject(context, {
+        validBonusLevels,
+      });
+    }
+
+    foundry.utils.mergeObject(context, {
+      actor,
+      system,
       enrichedNotes,
-    };
+    });
+
+    return context;
   }
 
   /** @override */

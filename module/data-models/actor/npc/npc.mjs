@@ -73,6 +73,7 @@ function generateSchema() {
 export default class NPCData extends FFLEBaseActorData {
   /**
    * @readonly
+   * @static
    */
   static TREASURE_DIE_SIZES = {
     normal: 6,
@@ -90,6 +91,17 @@ export default class NPCData extends FFLEBaseActorData {
     notorious: 3,
     boss: 4,
     endBoss: 5,
+  };
+
+  /**
+   * @readonly
+   * @static
+   */
+  static MAX_BONUS_LEVELS = {
+    normal: 3,
+    notorious: 2,
+    boss: 1,
+    endBoss: 0,
   };
 
   /** @override */
@@ -118,6 +130,15 @@ export default class NPCData extends FFLEBaseActorData {
 
     /** @type {NPCTier} */
     const npcTier = this.npcTier ?? "normal";
+
+    // If the NPC's tier increased, cap off the trait bonus levels
+    this.maxBonusLevel = NPCData.MAX_BONUS_LEVELS[npcTier] ?? 0;
+    for (const trait of Object.keys(this.traitMods)) {
+      this.traitMods[trait] = Math.min(
+        this.traitMods[trait],
+        this.maxBonusLevel,
+      );
+    }
 
     // Retrieve defenses, SD, attack, HP/MP, initiative
     // Tier + bonuses

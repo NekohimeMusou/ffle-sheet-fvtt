@@ -12,6 +12,7 @@
           name="system.defense.phys"
           value="{{system.defense.phys}}"
           placeholder="10"
+          {{#if (eq actor.type "npc")}}disabled{{/if}}
         />
       </li>
 
@@ -22,6 +23,7 @@
           name="system.defense.mag"
           value="{{system.defense.mag}}"
           placeholder="10"
+          {{#if (eq actor.type "npc")}}disabled{{/if}}
         />
       </li>
 
@@ -32,6 +34,7 @@
           name="system.defense.skill"
           value="{{system.defense.skill}}"
           placeholder="10"
+          {{#if (eq actor.type "npc")}}disabled{{/if}}
         />
       </li>
     </ol>

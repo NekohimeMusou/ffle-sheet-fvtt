@@ -26,6 +26,7 @@
       name="system.hp.max"
       value="{{system.hp.max}}"
       placeholder="1"
+      {{#if (eq actor.type "npc")}}disabled{{/if}}
     />
   </div>
 
@@ -43,6 +44,7 @@
       name="system.mp.max"
       value="{{system.mp.max}}"
       placeholder="1"
+      {{#if (eq actor.type "npc")}}disabled{{/if}}
     />
   </div>
 </section>

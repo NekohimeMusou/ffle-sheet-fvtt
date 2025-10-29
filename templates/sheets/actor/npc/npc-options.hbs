@@ -1,0 +1,14 @@
+<div class="npc-options flexcol">
+  <ol>
+    <li class="flexrow flex-group-center">
+      {{localize "FFLE.sheet.npc.npcOptions"}}
+    </li>
+
+    <li class="flexrow">
+      <div>{{localize "FFLE.sheet.npcTraits.initiative"}}</div>
+      <select name="system.traitMods.initiative">
+        {{selectOptions validBonusLevels selected=system.traitMods.initiative}}
+      </select>
+    </li>
+  </ol>
+</div>
