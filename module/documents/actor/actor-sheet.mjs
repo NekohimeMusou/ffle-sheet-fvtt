@@ -116,9 +116,9 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
     const system = actor.system;
 
     if (actor.type === "npc") {
-      const validBonusLevels = new Array((system.maxBonusLevel ?? 0) + 1).map(
-        (_, index) => index,
-      );
+      const validBonusLevels = new Array((system.maxBonusLevel ?? 0) + 1)
+        .fill(0)
+        .map((_, index) => index);
       foundry.utils.mergeObject(context, {
         validBonusLevels,
       });
