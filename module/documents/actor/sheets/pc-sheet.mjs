@@ -1,10 +1,14 @@
+/** @import FFLEActor from "../actor.mjs" */
+
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
+export default class FFLEPcSheet extends HandlebarsApplicationMixin(
+  ActorSheetV2,
+) {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    classes: ["ffle", "sheet", "actor"],
+    classes: ["ffle", "sheet", "actor", "pc"],
     position: {
       width: 600,
       height: 800,
@@ -27,11 +31,11 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
       template: "systems/ffle-sheet/templates/sheets/actor/resources.hbs",
     },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
-    debug: {
-      template: "systems/ffle-sheet/templates/sheets/actor/tabs/debug.hbs",
+    pc: {
+      template: "systems/ffle-sheet/templates/sheets/actor/tabs/pc.hbs",
       templates: [
-        "systems/ffle-sheet/templates/sheets/actor/debug/defenses.hbs",
-        "systems/ffle-sheet/templates/sheets/actor/debug/attack.hbs",
+        "systems/ffle-sheet/templates/sheets/actor/shared/defenses.hbs",
+        "systems/ffle-sheet/templates/sheets/actor/shared/attack.hbs",
       ],
       scrollable: [""],
     },
@@ -44,15 +48,15 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
   /** @inheritdoc */
   static TABS = {
     primary: {
-      tabs: [{ id: "debug" }, { id: "notes" }],
+      tabs: [{ id: "pc" }, { id: "notes" }],
       labelPrefix: "FFLE.tab",
-      initial: "debug",
+      initial: "pc",
     },
   };
 
   /**
    * Handle attack rolls
-   * @this {FFLEActorSheet}
+   * @this {FFLEPcSheet}
    * @param {PointerEvent} event
    * @param {HTMLElement} target
    */
@@ -74,7 +78,7 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
 
   /**
    * Handle image editing
-   * @this {FFLEActorSheet}
+   * @this {FFLEPcSheet}
    * @param {PointerEvent} event
    * @param {HTMLElement} target
    */
@@ -93,39 +97,36 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(ActorShee
 
   /** @override */
   async _prepareContext(_options) {
-    return {
+    const context = {
       FFLE: CONFIG.FFLE,
-      actor: this.actor,
-      system: this.actor.system,
       /** @type {Record<string, foundry.applications.types.ApplicationTab>} */
       tabs: this._prepareTabs("primary"),
       isEditable: this.isEditable,
     };
+
+    const { TextEditor } = foundry.applications.ux;
+    const enrichedNotes = await TextEditor.enrichHTML(this.actor.system.notes, {
+      secrets: this.actor.isOwner,
+      rollData: this.actor.getRollData(),
+      relativeTo: this.actor,
+    });
+
+    /** @type {FFLEActor} */
+    const actor = this.actor;
+    const system = actor.system;
+
+    foundry.utils.mergeObject(context, {
+      actor,
+      system,
+      enrichedNotes,
+    });
+
+    return context;
   }
 
   /** @override */
   async _preparePartContext(partId, context) {
-    switch (partId) {
-      case "debug":
-        context.tab = context.tabs[partId];
-        break;
-      case "notes":
-        {
-          const { TextEditor } = foundry.applications.ux;
-          const enrichedNotes = await TextEditor.enrichHTML(
-            this.actor.system.notes,
-            {
-              secrets: this.actor.isOwner,
-              rollData: this.actor.getRollData(),
-              relativeTo: this.actor,
-            },
-          );
-
-          context.enrichedNotes = enrichedNotes;
-          context.tab = context.tabs[partId];
-        }
-        break;
-    }
+    context.tab = context.tabs[partId];
 
     return context;
   }

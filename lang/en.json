@@ -1,6 +1,5 @@
 {
   "FFLE": {
-    "charSheet": "Character Sheet",
     "resourceTypes": {
       "hp": "HP",
       "mp": "MP"
@@ -16,15 +15,21 @@
       "skill": "SD"
     },
     "sheet": {
+      "pcSheet": "PC Sheet",
+      "npcSheet": "NPC Sheet",
       "npc": {
         "tier": "Tier",
-        "traitMod": "Trait Modifier"
+        "traitMod": "Trait Modifier",
+        "npcOptions": "NPC Options"
       },
-      "defenses": "Defenses"
+      "defenses": "Defenses",
+      "level": "Level",
+      "initiative": "Initiative"
     },
     "tab": {
       "notes": "Notes",
-      "debug": "Debug"
+      "pc": "PC",
+      "npc": "NPC"
     },
     "dice": {
       "eed": "Extra Effort Dice",

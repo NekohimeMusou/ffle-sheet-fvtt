@@ -33,5 +33,9 @@
     "placeables",
     "prosemirror",
     "regen"
-  ]
+  ],
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "editor.formatOnType": true
 }

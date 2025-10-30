@@ -1,7 +1,8 @@
 import { FFLE } from "./config/config.mjs";
 import { ACTORMODELS } from "./data-models/actor-data-models.mjs";
 import FFLEActor from "./documents/actor/actor.mjs";
-import FFLEActorSheet from "./documents/actor/actor-sheet.mjs";
+import FFLEPcSheet from "./documents/actor/sheets/pc-sheet.mjs";
+import FFLENpcSheet from "./documents/actor/sheets/npc-sheet.mjs";
 import { templatePaths } from "./config/templates.mjs";
 import { configureStatusEffects } from "./config/statuses.mjs";
 
@@ -34,9 +35,14 @@ function registerDocumentClasses() {
 
 function registerDocumentSheets() {
   Actors.unregisterSheet("core", foundry.applications.sheets.ActorSheetV2);
-  Actors.registerSheet(FFLE.PACKAGE_ID, FFLEActorSheet, {
-    label: "FFLE.charSheet",
-    types: ["pc", "npc"],
+  Actors.registerSheet(CONFIG.FFLE.PACKAGE_ID, FFLEPcSheet, {
+    label: "FFLE.sheet.pcSheet",
+    types: ["pc"],
+    makeDefault: true,
+  });
+  Actors.registerSheet(CONFIG.FFLE.PACKAGE_ID, FFLENpcSheet, {
+    label: "FFLE.sheet.npcSheet",
+    types: ["npc"],
     makeDefault: true,
   });
 }

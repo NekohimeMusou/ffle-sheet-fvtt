@@ -18,6 +18,9 @@ const { mergeObject } = foundry.utils;
  * @prop {string} [damageRender]
  */
 
+/**
+ * @extends {foundry.documents.Actor}
+ */
 export default class FFLEActor extends foundry.documents.Actor {
   /**
    * Chat template to use for attack rolls
@@ -36,7 +39,11 @@ export default class FFLEActor extends foundry.documents.Actor {
   async #processAllTargets(targets, defenseType, attackTotal) {
     return await Promise.all(
       targets.map(async (target) => {
-        const data = await this.#processTarget(target, defenseType, attackTotal);
+        const data = await this.#processTarget(
+          target,
+          defenseType,
+          attackTotal,
+        );
         if (data.damageRoll != undefined) {
           data.damageRender = await data.damageRoll.render();
         }
@@ -83,7 +90,10 @@ export default class FFLEActor extends foundry.documents.Actor {
     if (attackSuccess) {
       const { damageFormula } = this.system;
 
-      const damageRoll = await new Roll(damageFormula, this.getRollData()).evaluate();
+      const damageRoll = await new Roll(
+        damageFormula,
+        this.getRollData(),
+      ).evaluate();
 
       mergeObject(targetData, { damageRoll });
     }
@@ -110,9 +120,15 @@ export default class FFLEActor extends foundry.documents.Actor {
     const total = attackRoll.total;
 
     /** @type {TargetOutputData[]} */
-    const targetData = await this.#processAllTargets(targets, defenseType, total);
+    const targetData = await this.#processAllTargets(
+      targets,
+      defenseType,
+      total,
+    );
 
-    const damageRolls = targetData.filter((tgt) => tgt.damageRoll).map((tgt) => tgt.damageRoll);
+    const damageRolls = targetData
+      .filter((tgt) => tgt.damageRoll)
+      .map((tgt) => tgt.damageRoll);
 
     const rolls = [attackRoll, ...damageRolls];
 

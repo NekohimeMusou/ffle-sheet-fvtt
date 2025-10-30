@@ -11,6 +11,7 @@
         name="system.attackMod"
         value="{{system.attackMod}}"
         placeholder="0"
+        {{#if (eq actor.type "npc")}}disabled{{/if}}
       />
     </li>
 
@@ -42,6 +43,7 @@
         name="system.eedFactor"
         value="{{system.eedFactor}}"
         placeholder="3"
+        {{#if (eq actor.type "npc")}}disabled{{/if}}
       />
     </li>
   </ol>

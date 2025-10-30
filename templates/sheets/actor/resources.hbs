@@ -1,15 +1,50 @@
 <section class="resources flexrow">
   <div class="resource flexrow flex-group-center">
+    <div class="resource-label">{{localize "FFLE.sheet.level"}}</div>
+    <input
+      type="number"
+      name="system.level"
+      value="{{system.level}}"
+      placeholder="1"
+      min="1"
+      max="20"
+      required
+    />
+  </div>
+
+  <div class="resource flexrow flex-group-center">
     <div class="resource-label">{{localize "FFLE.resourceTypes.hp"}}</div>
-    <input type="number" name="system.hp.value" value="{{system.hp.value}}" placeholder="0" />
+    <input
+      type="number"
+      name="system.hp.value"
+      value="{{system.hp.value}}"
+      placeholder="0"
+    />
     <span>/</span>
-    <input type="number" name="system.hp.max" value="{{system.hp.max}}" placeholder="1" />
+    <input
+      type="number"
+      name="system.hp.max"
+      value="{{system.hp.max}}"
+      placeholder="1"
+      {{#if (eq actor.type "npc")}}disabled{{/if}}
+    />
   </div>
 
   <div class="resource flexrow flex-group-center">
     <div class="resource-label">{{localize "FFLE.resourceTypes.mp"}}</div>
-    <input type="number" name="system.mp.value" value="{{system.mp.value}}" placeholder="0" />
+    <input
+      type="number"
+      name="system.mp.value"
+      value="{{system.mp.value}}"
+      placeholder="0"
+    />
     <span>/</span>
-    <input type="number" name="system.mp.max" value="{{system.mp.max}}" placeholder="1" />
+    <input
+      type="number"
+      name="system.mp.max"
+      value="{{system.mp.max}}"
+      placeholder="1"
+      {{#if (eq actor.type "npc")}}disabled{{/if}}
+    />
   </div>
 </section>
