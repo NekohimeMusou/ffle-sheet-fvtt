@@ -1,14 +1,14 @@
-/** @import FFLEActor from "./actor.mjs" */
+/** @import FFLEActor from "../actor.mjs" */
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-export default class FFLEActorSheet extends HandlebarsApplicationMixin(
+export default class FFLEPcSheet extends HandlebarsApplicationMixin(
   ActorSheetV2,
 ) {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    classes: ["ffle", "sheet", "actor"],
+    classes: ["ffle", "sheet", "actor", "pc"],
     position: {
       width: 600,
       height: 800,
@@ -56,7 +56,7 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
 
   /**
    * Handle attack rolls
-   * @this {FFLEActorSheet}
+   * @this {FFLEPcSheet}
    * @param {PointerEvent} event
    * @param {HTMLElement} target
    */
@@ -78,7 +78,7 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
 
   /**
    * Handle image editing
-   * @this {FFLEActorSheet}
+   * @this {FFLEPcSheet}
    * @param {PointerEvent} event
    * @param {HTMLElement} target
    */
@@ -114,15 +114,6 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
     /** @type {FFLEActor} */
     const actor = this.actor;
     const system = actor.system;
-
-    if (actor.type === "npc") {
-      const validBonusLevels = new Array((system.maxBonusLevel ?? 0) + 1)
-        .fill(0)
-        .map((_, index) => index);
-      foundry.utils.mergeObject(context, {
-        validBonusLevels,
-      });
-    }
 
     foundry.utils.mergeObject(context, {
       actor,

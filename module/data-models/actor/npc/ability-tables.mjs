@@ -3,15 +3,15 @@
 /**
  * Get the appropriate stat for an NPC at a given tier, APL, and trait bonus.
  *
- * @param {NPCAbility} ability
+ * @param {NPCTrait} trait
  * @param {NPCTier} tier
  * @param {number} level
  * @param {number} modifier 0-3 if Normal, 0-2 if Notorious, 0-1 if Boss, ignored if End Boss
  * @returns {number}
  */
-export function getNPCAbility(ability, tier, level, modifier) {
+export function getNPCAbility(trait, tier, level, modifier) {
   // Get the table for the appropriate ability
-  const tierTable = abilityTables[ability][tier];
+  const tierTable = traitTables[trait][tier];
   // If the modifier is too large for this tier, fall back to the highest one
   const abilityTable =
     modifier >= tierTable.length ? tierTable.lastItem : tierTable[modifier];
@@ -222,8 +222,8 @@ const skillDefense = {
   ],
 };
 
-/** @typedef {keyof typeof abilityTables} NPCAbility */
-const abilityTables = {
+/** @typedef {keyof typeof traitTables} NPCTrait */
+const traitTables = {
   initiative,
   hpMp,
   attack,

@@ -1,0 +1,10 @@
+<div class="flexrow">
+  {{#each FFLE.npcTraits}}
+    <div class="flexcol">
+      <div>{{localize this}}</div>
+      <select name="system.traitMods.{{@key}}">
+      {{selectOptions ../validBonusLevels selected=(lookup ../system.traitMods @key)}}
+      </select>
+    </div>
+  {{/each}}
+</div>

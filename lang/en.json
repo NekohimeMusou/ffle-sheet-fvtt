@@ -1,6 +1,5 @@
 {
   "FFLE": {
-    "charSheet": "Character Sheet",
     "resourceTypes": {
       "hp": "HP",
       "mp": "MP"
@@ -16,20 +15,16 @@
       "skill": "SD"
     },
     "sheet": {
+      "pcSheet": "PC Sheet",
+      "npcSheet": "NPC Sheet",
       "npc": {
         "tier": "Tier",
         "traitMod": "Trait Modifier",
         "npcOptions": "NPC Options"
       },
-      "npcTraits": {
-        "initiative": "Initiative",
-        "hpMp": "HP/MP",
-        "attack": "Attack",
-        "defense": "Defense",
-        "skillDefense": "Skill Defense"
-      },
       "defenses": "Defenses",
-      "level": "Level"
+      "level": "Level",
+      "initiative": "Initiative"
     },
     "tab": {
       "notes": "Notes",

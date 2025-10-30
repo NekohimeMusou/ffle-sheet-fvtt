@@ -24,6 +24,14 @@ const npcTiers = {
   endBoss: "FFLE.npc.tier.endBoss",
 };
 
+const npcTraits = {
+  initiative: "FFLE.npc.traitMod.initiative",
+  hpMp: "FFLE.npc.traitMod.hpMp",
+  attack: "FFLE.npc.traitMod.attack",
+  defense: "FFLE.npc.traitMod.defense",
+  skillDefense: "FFLE.npc.traitMod.skillDefense",
+};
+
 /**
  * @typedef {keyof typeof negativeConditions} NegativeCondition
  */
@@ -101,6 +109,7 @@ export const FFLE = {
   resourceTypes,
   defenseTypes,
   npcTiers,
+  npcTraits,
   negativeConditions,
   positiveConditions,
   statusConditions,
