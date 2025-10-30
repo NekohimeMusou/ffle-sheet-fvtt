@@ -34,8 +34,8 @@ export default class FFLEActorSheet extends HandlebarsApplicationMixin(
     pc: {
       template: "systems/ffle-sheet/templates/sheets/actor/tabs/pc.hbs",
       templates: [
-        "systems/ffle-sheet/templates/sheets/actor/pc/defenses.hbs",
-        "systems/ffle-sheet/templates/sheets/actor/pc/attack.hbs",
+        "systems/ffle-sheet/templates/sheets/actor/shared/defenses.hbs",
+        "systems/ffle-sheet/templates/sheets/actor/shared/attack.hbs",
       ],
       scrollable: [""],
     },
