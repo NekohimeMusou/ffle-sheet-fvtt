@@ -5,6 +5,13 @@ const resourceTypes = {
   mp: "FFLE.resourceTypes.mp",
 };
 
+/** @typedef {keyof typeof levelBonusTiers} LevelBonusTier */
+const levelBonusTiers = {
+  none: "FFLE.levelBonus.none",
+  half: "FFLE.levelBonus.half",
+  full: "FFLE.levelBonus.full",
+};
+
 /**
  * @typedef {keyof typeof defenseTypes} DefenseType
  */
@@ -12,6 +19,11 @@ const defenseTypes = {
   phys: "FFLE.defenseTypes.phys",
   mag: "FFLE.defenseTypes.mag",
   skill: "FFLE.defenseTypes.skill",
+};
+
+const armorTypes = {
+  phys: "FFLE.defenseTypes.phys",
+  mag: "FFLE.defenseTypes.mag",
 };
 
 /**
@@ -107,7 +119,9 @@ const conditionWeights = {
 export const FFLE = {
   PACKAGE_ID,
   resourceTypes,
+  levelBonusTiers,
   defenseTypes,
+  armorTypes,
   npcTiers,
   npcTraits,
   negativeConditions,

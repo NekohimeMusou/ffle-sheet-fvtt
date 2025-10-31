@@ -1,0 +1,18 @@
+<ol>
+  <li class="flexrow flex-group-center">
+    {{localize "FFLE.sheet.armor"}}
+  </li>
+
+  {{#each FFLE.armorTypes}}
+  <li class="flexrow">
+    <div>{{localize this}}</div>
+    <select name="system.armorLevel.{{@key}}">
+      {{selectOptions
+          ../FFLE.levelBonusTiers
+          selected=(lookup ../system.armorLevel @key)
+          localize=true
+        }}
+    </select>
+  </li>
+  {{/each}}
+</ol>

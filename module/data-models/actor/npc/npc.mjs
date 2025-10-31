@@ -122,6 +122,7 @@ export default class NPCData extends FFLEBaseActorData {
    * @override
    */
   prepareBaseData() {
+    super.prepareBaseData();
     // /** @type {FFLEActor} */
     // const actor = this.parent;
 
@@ -184,8 +185,12 @@ export default class NPCData extends FFLEBaseActorData {
       this.traitMods.defense,
     );
 
-    this.defense.phys = swapPdSd ? Math.floor(defenseTrait / 2) : defenseTrait;
-    this.defense.mag = swapPdSd ? defenseTrait : Math.floor(defenseTrait / 2);
+    this.defense.phys =
+      (swapPdSd ? Math.floor(defenseTrait / 2) : defenseTrait) +
+      this.armorBonus.phys;
+    this.defense.mag =
+      (swapPdSd ? defenseTrait : Math.floor(defenseTrait / 2)) +
+      this.armorBonus.mag;
 
     // Calculate ability modifier
     this.abilityModifier = NPCData.ABILITY_MODIFIERS[npcTier] ?? 2;

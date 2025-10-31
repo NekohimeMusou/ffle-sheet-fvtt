@@ -1,0 +1,7 @@
+<div class="defenses flexcol">
+  {{> "systems/ffle-sheet/templates/sheets/actor/shared/defenses/base-defenses.hbs"}}
+
+  {{#if (eq actor.type "npc")}}
+  {{> "systems/ffle-sheet/templates/sheets/actor/shared/defenses/armor.hbs"}}
+  {{/if}}
+</div>

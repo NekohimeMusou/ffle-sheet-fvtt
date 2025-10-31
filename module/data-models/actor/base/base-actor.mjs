@@ -39,6 +39,16 @@ function generateSchema() {
       initial: "phys",
     }),
     noEED: new fields.BooleanField(),
+    armorLevel: new fields.SchemaField({
+      phys: new fields.StringField({
+        choices: FFLE.levelBonusTiers,
+        initial: "none",
+      }),
+      mag: new fields.StringField({
+        choices: FFLE.levelBonusTiers,
+        initial: "none",
+      }),
+    }),
   };
 }
 
@@ -52,11 +62,36 @@ export default class FFLEBaseActorData extends foundry.abstract.TypeDataModel {
     return generateSchema();
   }
 
+  /**
+   * Get the level bonus for a given tier (none, half, full)
+   * @param {import("../../../config/config.mjs").LevelBonusTier} bonusTier
+   * @returns {number}
+   */
+  getLevelBonus(bonusTier) {
+    switch (bonusTier) {
+      case "none":
+        return 0;
+      case "half":
+        return this.halfLevel;
+      case "full":
+        return this.level;
+    }
+  }
+
   get halfLevel() {
     return Math.max(1, Math.floor(this.level / 2));
   }
 
   get quarterLevel() {
     return Math.max(1, Math.floor(this.level / 4));
+  }
+
+  /** @override */
+  prepareBaseData() {
+    // Get armor bonus
+    this.armorBonus = {
+      phys: this.getLevelBonus(this.armorLevel.phys),
+      mag: this.getLevelBonus(this.armorLevel.mag),
+    };
   }
 }

@@ -4,6 +4,11 @@
       "hp": "HP",
       "mp": "MP"
     },
+    "levelBonus": {
+      "none": "None",
+      "half": "1/2 Level",
+      "full": "Level"
+    },
     "defenseTypes": {
       "phys": "Physical",
       "mag": "Magic",
@@ -23,6 +28,7 @@
         "npcOptions": "NPC Options"
       },
       "defenses": "Defenses",
+      "armor": "Armor",
       "level": "Level",
       "initiative": "Initiative"
     },

@@ -14,4 +14,12 @@ export default class PCData extends FFLEBaseActorData {
       initiative: new fields.NumberField({ integer: true, initial: 0 }),
     };
   }
+
+  /** @override */
+  prepareBaseData() {
+    super.prepareBaseData();
+
+    this.defense.phys += this.armorBonus.phys;
+    this.defense.mag += this.armorBonus.mag;
+  }
 }
