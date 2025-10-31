@@ -17,7 +17,7 @@ export default class FFLENpcSheet extends HandlebarsApplicationMixin(
       submitOnChange: true,
     },
     actions: {
-      rollAttack: this.#rollAttack,
+      rollAttack: this.#onAttackRoll,
       editImage: this.#onEditImage,
     },
   };
@@ -36,9 +36,13 @@ export default class FFLENpcSheet extends HandlebarsApplicationMixin(
       templates: [
         "systems/ffle-sheet/templates/sheets/actor/shared/defenses.hbs",
         "systems/ffle-sheet/templates/sheets/actor/shared/attack.hbs",
-        "systems/ffle-sheet/templates/sheets/actor/npc/traits.hbs",
       ],
       scrollable: [""],
+    },
+    npcSettings: {
+      template:
+        "systems/ffle-sheet/templates/sheets/actor/tabs/npc-settings.hbs",
+      templates: ["systems/ffle-sheet/templates/sheets/actor/npc/traits.hbs"],
     },
     notes: {
       template: "systems/ffle-sheet/templates/sheets/actor/tabs/notes.hbs",
@@ -49,7 +53,7 @@ export default class FFLENpcSheet extends HandlebarsApplicationMixin(
   /** @inheritdoc */
   static TABS = {
     primary: {
-      tabs: [{ id: "npc" }, { id: "notes" }],
+      tabs: [{ id: "npc" }, { id: "npcSettings" }, { id: "notes" }],
       labelPrefix: "FFLE.tab",
       initial: "npc",
     },
@@ -61,7 +65,7 @@ export default class FFLENpcSheet extends HandlebarsApplicationMixin(
    * @param {PointerEvent} event
    * @param {HTMLElement} target
    */
-  static async #rollAttack(event, target) {
+  static async #onAttackRoll(event, target) {
     event.preventDefault();
     const defenseType = target.dataset.defense;
 

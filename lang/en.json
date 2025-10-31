@@ -29,7 +29,8 @@
     "tab": {
       "notes": "Notes",
       "pc": "PC",
-      "npc": "NPC"
+      "npc": "NPC",
+      "npcSettings": "NPC Settings"
     },
     "dice": {
       "eed": "Extra Effort Dice",
