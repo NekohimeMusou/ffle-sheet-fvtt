@@ -1,12 +1,19 @@
 <section
-  class="tab npcSettings {{tab.cssClass}}"
+  class="tab npcSettings flexcol {{tab.cssClass}}"
   data-group="primary"
   data-tab="npcSettings"
 >
   {{! Trait mods }}
   {{> "systems/ffle-sheet/templates/sheets/actor/npc/traits.hbs"}}
 
-  {{! Stat modifiers (fixed attack/defense bonuses etc) }}
+  {{! Swap HP/MP and Swap PD/MD }}
+  <div class="flexrow">
+    <div>{{localize "FFLE.sheet.swapHpMp"}}</div>
+    <input type="checkbox" name="system.extraMods.swapHpMp" {{checked system.extraMods.swapHpMp}} />
+  </div>
 
-  {{! Armor selections }}
+  <div class="flexrow">
+    <div>{{localize "FFLE.sheet.swapPdMd"}}</div>
+    <input type="checkbox" name="system.extraMods.swapPdMd" {{checked system.extraMods.swapPdMd}} />
+  </div>
 </section>

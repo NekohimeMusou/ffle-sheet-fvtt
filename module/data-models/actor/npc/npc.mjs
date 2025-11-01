@@ -56,6 +56,8 @@ function generateSchema() {
       swapPdSd: new fields.BooleanField(),
     }),
 
+    sturdyArmor: new fields.BooleanField(),
+
     extraPoints: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
 
     // Placeholder for calculated field
@@ -171,12 +173,13 @@ export default class NPCData extends FFLEBaseActorData {
       this.traitMods.attack,
     );
 
-    this.defense.skill = getNPCAbility(
-      "skillDefense",
-      npcTier,
-      level,
-      this.traitMods.defense,
-    );
+    this.defense.skill =
+      getNPCAbility(
+        "skillDefense",
+        npcTier,
+        level,
+        this.traitMods.skillDefense,
+      ) + (this.sturdyArmor ? 5 : 0);
 
     const defenseTrait = getNPCAbility(
       "defense",

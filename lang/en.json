@@ -29,8 +29,11 @@
       },
       "defenses": "Defenses",
       "armor": "Armor",
+      "sturdy": "Sturdy",
       "level": "Level",
-      "initiative": "Initiative"
+      "initiative": "Initiative",
+      "swapHpMp": "Swap HP/MP",
+      "swapPdMd": "Swap PD/MD"
     },
     "tab": {
       "notes": "Notes",
