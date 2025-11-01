@@ -7,13 +7,43 @@
   {{> "systems/ffle-sheet/templates/sheets/actor/npc/traits.hbs"}}
 
   {{! Swap HP/MP and Swap PD/MD }}
-  <div class="flexrow">
+  <div class="flexrow flex-group-center">
     <div>{{localize "FFLE.sheet.swapHpMp"}}</div>
     <input type="checkbox" name="system.extraMods.swapHpMp" {{checked system.extraMods.swapHpMp}} />
-  </div>
-
-  <div class="flexrow">
     <div>{{localize "FFLE.sheet.swapPdMd"}}</div>
     <input type="checkbox" name="system.extraMods.swapPdMd" {{checked system.extraMods.swapPdMd}} />
+  </div>
+
+  <hr />
+
+  <div>{{localize "FFLE.sheet.defenseMods"}}</div>
+
+  <div class="flexrow flex-group-center">
+    <div>{{localize "FFLE.defenseTypes.phys"}}</div>
+    <input
+      type="number"
+      name="system.npcDefenseBonus.phys"
+      value="{{system.npcDefenseBonus.phys}}"
+      placeholder="0"
+      required
+    />
+
+    <div>{{localize "FFLE.defenseTypes.mag"}}</div>
+    <input
+      type="number"
+      name="system.npcDefenseBonus.mag"
+      value="{{system.npcDefenseBonus.mag}}"
+      placeholder="0"
+      required
+    />
+
+    <div>{{localize "FFLE.defenseTypes.skill"}}</div>
+    <input
+      type="number"
+      name="system.npcDefenseBonus.skill"
+      value="{{system.npcDefenseBonus.skill}}"
+      placeholder="0"
+      required
+    />
   </div>
 </section>

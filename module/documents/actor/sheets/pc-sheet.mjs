@@ -64,7 +64,7 @@ export default class FFLEPcSheet extends HandlebarsApplicationMixin(
    */
   static async #rollAttack(event, target) {
     event.preventDefault();
-    const defenseType = target.dataset.defense;
+    const targetDefense = target.dataset.defense;
 
     const targets = [...game.user.targets];
 
@@ -75,7 +75,7 @@ export default class FFLEPcSheet extends HandlebarsApplicationMixin(
       return;
     }
 
-    await this.actor.rollAttack(targets, defenseType);
+    await this.actor.rollAttack(targets, targetDefense);
   }
 
   /**

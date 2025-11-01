@@ -1,5 +1,12 @@
 const PACKAGE_ID = "ffle-sheet";
 
+/** @typedef {keyof typeof rollTypes} RollType */
+const rollTypes = {
+  normal: "FFLE.rollTypes.normal",
+  advantage: "FFLE.rollTypes.advantage",
+  disadvantage: "FFLE.rollTypes.disadvantage",
+};
+
 const resourceTypes = {
   hp: "FFLE.resourceTypes.hp",
   mp: "FFLE.resourceTypes.mp",
@@ -118,6 +125,7 @@ const conditionWeights = {
 
 export const FFLE = {
   PACKAGE_ID,
+  rollTypes,
   resourceTypes,
   levelBonusTiers,
   defenseTypes,

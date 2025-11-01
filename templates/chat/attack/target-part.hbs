@@ -1,5 +1,5 @@
 <div><strong>{{targetName}}: {{localize (concat "FFLE.debug.attack.result." (ifThen attackSuccess "hit" "miss"))}}</strong></div>
-<div>{{localize (concat "FFLE.defenseTypesAbbrev." defenseType)}}: {{defenseValue}}</div>
+<div>{{localize (concat "FFLE.defenseTypesAbbrev." targetDefense)}}: {{defenseValue}}</div>
 <div>{{localize "FFLE.debug.attack.result.margin" margin=margin}}</div>
 {{#unless system.noEED}}
 {{#if (gt eed 0)}}<div>{{localize "FFLE.debug.attack.result.EED" eed=eed}}</div>{{/if}}

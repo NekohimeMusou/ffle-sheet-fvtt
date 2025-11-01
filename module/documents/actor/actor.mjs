@@ -1,6 +1,6 @@
 /** @import { Token } from "@client/canvas/placeables/_module.mjs" */
 /** @import { Roll } from "@client/dice/_module.mjs" */
-/** @import { DefenseType } from "../../config/config.mjs" */
+/** @import { DefenseType, RollType } from "../../config/config.mjs" */
 const { Roll } = foundry.dice;
 const { ChatMessage } = foundry.documents;
 const { renderTemplate } = foundry.applications.handlebars;
@@ -32,19 +32,21 @@ export default class FFLEActor extends foundry.documents.Actor {
   /**
    * Process all targeted tokens.
    * @param {Token[]} targets
-   * @param {DefenseType} defenseType
+   * @param {DefenseType} targetDefense
    * @param {number} attackTotal
+   * @param {boolean} critSuccess
    * @returns {Promise<TargetOutputData[]>}
    */
-  async #processAllTargets(targets, defenseType, attackTotal) {
+  async #processAllTargets(targets, targetDefense, attackTotal, critSuccess) {
     return await Promise.all(
       targets.map(async (target) => {
         const data = await this.#processTarget(
           target,
-          defenseType,
+          targetDefense,
           attackTotal,
+          critSuccess,
         );
-        if (data.damageRoll != undefined) {
+        if (data.damageRoll) {
           data.damageRender = await data.damageRoll.render();
         }
         return data;
@@ -55,17 +57,18 @@ export default class FFLEActor extends foundry.documents.Actor {
   /**
    * Get the data from a target and generate the context for its respective Handlebars part
    * @param {Token} target
-   * @param {DefenseType} defenseType
+   * @param {DefenseType} targetDefense
    * @param {number} attackTotal
+   * @param {boolean} critSuccess
    * @returns {Promise<TargetOutputData>}
    */
-  async #processTarget(target, defenseType, attackTotal) {
+  async #processTarget(target, targetDefense, attackTotal, critSuccess) {
     const actor = target.actor;
     /**
      * @type {number}
      * @default 10
      */
-    const defenseValue = actor.system.defense[defenseType] ?? 10;
+    const defenseValue = actor.system.defense[targetDefense] ?? 10;
 
     const margin = attackTotal - defenseValue;
 
@@ -90,11 +93,16 @@ export default class FFLEActor extends foundry.documents.Actor {
     if (attackSuccess) {
       const { damageFormula } = this.system;
 
-      const damageRoll = await new Roll(
+      const damageRoll = new Roll(
         damageFormula,
         this.getRollData(),
-      ).evaluate();
+      );
 
+      if (critSuccess) {
+        damageRoll.alter(2, 0);
+      }
+
+      // Remember to evaluate roll
       mergeObject(targetData, { damageRoll });
     }
 
@@ -106,23 +114,49 @@ export default class FFLEActor extends foundry.documents.Actor {
    * compare the attack roll to their AC and append a partial showing whether the attack hit
    * and, if so, how many EED are generated.
    * @param {Token[]} targets
-   * @param {DefenseType} defenseType
+   * @param {DefenseType} targetDefense
    */
-  async rollAttack(targets, defenseType) {
+  async rollAttack(targets, targetDefense) {
     foundry.ui.notifications.info(
-      `Attack event handler triggered: ${defenseType}`,
+      `Attack event handler triggered: ${targetDefense}`,
     );
 
-    const { attackMod } = this.system;
-    const formula = `1d20+${attackMod}`;
-    const attackRoll = await new Roll(formula, this.getRollData()).roll();
+    const {
+      attackMod,
+      critSuccessThreshold,
+      critFailThreshold,
+      boons,
+      rollType,
+    } = this.system;
+
+    let diceString = "1d20";
+
+    switch (rollType) {
+      case "advantage":
+        diceString = "2d20kh";
+        break;
+      case "disadvantage":
+        diceString += "2d20kl";
+        break;
+    }
+
+    const boonString =
+      boons === 0 ? "" : `${boons < 0 ? "-" : "+"}${boons}d6k1`;
+    const formula = `${diceString}+${attackMod}${boonString}`;
+    const attackRoll = await new Roll(formula, this.getRollData()).evaluate();
 
     const total = attackRoll.total;
+
+    const naturalRoll = attackRoll.dice[0].total ?? attackRoll.total;
+
+    const critSuccess = naturalRoll >= critSuccessThreshold;
+
+    const critFail = !critSuccess && naturalRoll <= critFailThreshold;
 
     /** @type {TargetOutputData[]} */
     const targetData = await this.#processAllTargets(
       targets,
-      defenseType,
+      targetDefense,
       total,
     );
 
@@ -133,9 +167,11 @@ export default class FFLEActor extends foundry.documents.Actor {
     const rolls = [attackRoll, ...damageRolls];
 
     const context = {
-      defenseType,
+      targetDefense,
       attackRoll: await attackRoll.render(),
       targetData,
+      critSuccess,
+      critFail,
     };
 
     const content = await renderTemplate(

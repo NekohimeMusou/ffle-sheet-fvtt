@@ -1,8 +1,21 @@
 <h2>{{localize "FFLE.debug.attack.attackRoll"}}</h2>
-<h3>{{localize "FFLE.debug.attack.vsDefense" defenseType=(localize (concat "FFLE.defenseTypes." defenseType))}}</h3>
+<h3>
+  {{localize
+    "FFLE.debug.attack.vsDefense"
+    defenseType=(localize (concat "FFLE.defenseTypes." targetDefense))
+  }}
+</h3>
 {{{attackRoll}}}
-<h2>{{localize "FFLE.debug.attack.targets"}}</h2>
-{{! Target partials with #each }}
-{{#each targetData}}
-{{> "systems/ffle-sheet/templates/chat/attack/target-part.hbs" defenseType=../defenseType}}
-{{/each}}
+{{#if critSuccess}}
+<div><strong>{{localize "FFLE.dice.critSuccess"}}</strong></div>
+{{/if}}
+{{#if critFail}}
+<div><strong>{{localize "FFLE.dice.critFail"}}</strong></div>
+{{/if}}
+{{#unless critFail}}
+  <h2>{{localize "FFLE.debug.attack.targets"}}</h2>
+
+  {{#each targetData}}
+  {{> "systems/ffle-sheet/templates/chat/attack/target-part.hbs" targetDefense=../targetDefense}}
+  {{/each}}
+{{#unless}}

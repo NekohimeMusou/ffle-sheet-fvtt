@@ -58,6 +58,14 @@ function generateSchema() {
 
     sturdyArmor: new fields.BooleanField(),
 
+    npcAttackBonus: new fields.NumberField({ integer: true, initial: 0 }),
+
+    npcDefenseBonus: new fields.SchemaField({
+      phys: new fields.NumberField({ integer: true, initial: 0 }),
+      mag: new fields.NumberField({ integer: true, initial: 0 }),
+      skill: new fields.NumberField({ integer: true, initial: 0 }),
+    }),
+
     extraPoints: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
 
     // Placeholder for calculated field
@@ -166,12 +174,9 @@ export default class NPCData extends FFLEBaseActorData {
     this.hp.max = swapHpMp ? Math.floor(hpMpTrait / 2) : hpMpTrait;
     this.mp.max = swapHpMp ? hpMpTrait : Math.floor(hpMpTrait / 2);
 
-    this.attackMod = getNPCAbility(
-      "attack",
-      npcTier,
-      level,
-      this.traitMods.attack,
-    );
+    this.attackMod =
+      getNPCAbility("attack", npcTier, level, this.traitMods.attack) +
+      this.npcAttackBonus;
 
     this.defense.skill =
       getNPCAbility(
@@ -179,7 +184,9 @@ export default class NPCData extends FFLEBaseActorData {
         npcTier,
         level,
         this.traitMods.skillDefense,
-      ) + (this.sturdyArmor ? 5 : 0);
+      ) +
+      (this.sturdyArmor ? 5 : 0) +
+      this.npcDefenseBonus.skill;
 
     const defenseTrait = getNPCAbility(
       "defense",
@@ -190,10 +197,12 @@ export default class NPCData extends FFLEBaseActorData {
 
     this.defense.phys =
       (swapPdSd ? Math.floor(defenseTrait / 2) : defenseTrait) +
-      this.armorBonus.phys;
+      this.armorBonus.phys +
+      this.npcDefenseBonus.phys;
     this.defense.mag =
       (swapPdSd ? defenseTrait : Math.floor(defenseTrait / 2)) +
-      this.armorBonus.mag;
+      this.armorBonus.mag +
+      this.npcDefenseBonus.mag;
 
     // Calculate ability modifier
     this.abilityModifier = NPCData.ABILITY_MODIFIERS[npcTier] ?? 2;

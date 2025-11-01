@@ -36,5 +36,6 @@
   },
 
   "primaryTokenAttribute": "hp",
-  "secondaryTokenAttribute": "mp"
+  "secondaryTokenAttribute": "mp",
+  "initiative": "1d20 + @initiative"
 }

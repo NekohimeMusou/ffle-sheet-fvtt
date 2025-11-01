@@ -49,12 +49,28 @@ function generateSchema() {
         initial: "none",
       }),
     }),
+    critSuccessThreshold: new fields.NumberField({
+      integer: true,
+      min: 1,
+      max: 20,
+      default: 20,
+    }),
+    critFailThreshold: new fields.NumberField({
+      integer: true,
+      min: 1,
+      max: 20,
+      default: 1,
+    }),
+    boons: new fields.NumberField({ integer: true, initial: 0 }),
+    rollType: new fields.StringField({
+      choices: FFLE.rollTypes,
+      initial: "normal",
+    }),
   };
 }
 
 /**
  * Base data model for actors. Individual actor types (PC, NPC) should extend this.
- * @abstract
  * @extends foundry.abstract.TypeDataModel
  */
 export default class FFLEBaseActorData extends foundry.abstract.TypeDataModel {

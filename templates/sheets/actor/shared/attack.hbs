@@ -1,10 +1,10 @@
 <div class="attack flexcol">
-  <ol>
-    <li class="flexrow flex-group-center">
+  <div>
+    <div class="flexrow flex-group-center">
       {{localize "FFLE.debug.attackData"}}
-    </li>
+    </div>
 
-    <li class="flexrow">
+    <div class="flexrow">
       <div>{{localize "FFLE.debug.attackMod"}}</div>
       <input
         type="number"
@@ -13,9 +13,45 @@
         placeholder="0"
         {{#if (eq actor.type "npc")}}disabled{{/if}}
       />
-    </li>
+    </div>
 
-    <li class="flexrow">
+    {{#if (eq actor.type "npc")}}
+    <div class="flexrow">
+      <div>{{localize "FFLE.sheet.npcAttackBonus"}}</div>
+      <input
+        type="number"
+        name="system.npcAttackBonus"
+        value="{{system.npcAttackBonus}}"
+        placeholder="0"
+      />
+    </div>
+    {{/if}}
+
+    <div class="flexrow">
+      <div>{{localize "FFLE.sheet.critSuccessThreshold"}}</div>
+      <input
+        type="number"
+        name="system.critSuccessThreshold"
+        value="{{system.critSuccessThreshold}}"
+        placeholder="20"
+        required
+      />
+    </div>
+
+    <div class="flexrow">
+      <div>{{localize "FFLE.sheet.critFailThreshold"}}</div>
+      <input
+        type="number"
+        name="system.critFailThreshold"
+        value="{{system.critFailThreshold}}"
+        placeholder="1"
+        required
+      />
+    </div>
+
+    <hr />
+
+    <div class="flexrow">
       <div>{{localize "FFLE.debug.targetDefense"}}</div>
       <select name="system.targetDefense">
         {{selectOptions
@@ -24,9 +60,9 @@
           localize=true
         }}
       </select>
-    </li>
+    </div>
 
-    <li class="flexrow">
+    <div class="flexrow">
       <div>{{localize "FFLE.debug.damageFormula"}}</div>
       <input
         type="text"
@@ -34,9 +70,9 @@
         value="{{system.damageFormula}}"
         placeholder="1d8"
       />
-    </li>
+    </div>
 
-    <li class="flexrow">
+    <div class="flexrow">
       <div>{{localize "FFLE.dice.eed"}}</div>
       <input
         type="number"
@@ -45,7 +81,38 @@
         placeholder="3"
         {{#if (eq actor.type "npc")}}disabled{{/if}}
       />
-    </li>
-  </ol>
-  <button data-action="rollAttack" data-defense="{{system.targetDefense}}">{{localize "FFLE.debug.rollAttack"}}</button>
+    </div>
+
+    <hr />
+
+    <div class="flexrow">
+      <div>{{localize "FFLE.sheet.boons"}}</div>
+      <input
+        type="number"
+        name="system.boons"
+        value="{{system.boons}}"
+        placeholder="0"
+      />
+    </div>
+
+    <div class="flexrow">
+      <div>{{localize "FFLE.sheet.rollType"}}</div>
+      <select name="system.rollType">
+        {{selectOptions
+          FFLE.rollTypes
+          selected=system.rollType
+          localize=true
+        }}
+      </select>
+    </div>
+  </div>
+
+  <hr />
+
+  <button
+    data-action="rollAttack"
+    data-defense="{{system.targetDefense}}"
+  >
+    {{localize "FFLE.debug.rollAttack"}}
+  </button>
 </div>

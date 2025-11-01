@@ -1,5 +1,10 @@
 {
   "FFLE": {
+    "rollTypes": {
+      "normal": "Normal",
+      "advantage": "Advantage",
+      "disadvantage": "Disadvantage"
+    },
     "resourceTypes": {
       "hp": "HP",
       "mp": "MP"
@@ -33,7 +38,13 @@
       "level": "Level",
       "initiative": "Initiative",
       "swapHpMp": "Swap HP/MP",
-      "swapPdMd": "Swap PD/MD"
+      "swapPdMd": "Swap PD/MD",
+      "boons": "Boons/Banes",
+      "critSuccessThreshold": "Crit Threshold",
+      "critFailThreshold": "Crit Fail Threshold",
+      "rollType": "Roll Type",
+      "npcAttackBonus": "Attack Bonus (NPC)",
+      "defenseMods": "Defense Modifiers"
     },
     "tab": {
       "notes": "Notes",
@@ -43,7 +54,9 @@
     },
     "dice": {
       "eed": "Extra Effort Dice",
-      "eedShort": "EED"
+      "eedShort": "EED",
+      "critSuccess": "Critical success!",
+      "critFail": "Critical failure!"
     },
     "conditions": {
       "battered": "Battered",

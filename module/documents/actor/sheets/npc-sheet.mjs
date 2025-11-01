@@ -69,7 +69,7 @@ export default class FFLENpcSheet extends HandlebarsApplicationMixin(
    */
   static async #onAttackRoll(event, target) {
     event.preventDefault();
-    const defenseType = target.dataset.defense;
+    const targetDefense = target.dataset.defense;
 
     const targets = [...game.user.targets];
 
@@ -80,7 +80,7 @@ export default class FFLENpcSheet extends HandlebarsApplicationMixin(
       return;
     }
 
-    await this.actor.rollAttack(targets, defenseType);
+    await this.actor.rollAttack(targets, targetDefense);
   }
 
   /**
