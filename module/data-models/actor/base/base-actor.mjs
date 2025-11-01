@@ -53,18 +53,22 @@ function generateSchema() {
       integer: true,
       min: 1,
       max: 20,
-      default: 20,
+      initial: 20,
     }),
     critFailThreshold: new fields.NumberField({
       integer: true,
       min: 1,
       max: 20,
-      default: 1,
+      initial: 1,
     }),
     boons: new fields.NumberField({ integer: true, initial: 0 }),
     rollType: new fields.StringField({
       choices: FFLE.rollTypes,
       initial: "normal",
+    }),
+    dr: new fields.SchemaField({
+      phys: new fields.NumberField({ integer: true, initial: 0 }),
+      mag: new fields.NumberField({ integer: true, initial: 0 }),
     }),
   };
 }

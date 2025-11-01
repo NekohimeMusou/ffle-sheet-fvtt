@@ -33,6 +33,7 @@
         "npcOptions": "NPC Options"
       },
       "defenses": "Defenses",
+      "damageResistance": "Damage Resistance",
       "armor": "Armor",
       "sturdy": "Sturdy",
       "level": "Level",

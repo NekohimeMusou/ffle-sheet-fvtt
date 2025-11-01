@@ -3,15 +3,13 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-export default class FFLEPcSheet extends HandlebarsApplicationMixin(
-  ActorSheetV2,
-) {
+export default class FFLEPcSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes: ["ffle", "sheet", "actor", "pc"],
     position: {
       width: 600,
-      height: 800,
+      height: 900,
     },
     form: {
       submitOnChange: true,
