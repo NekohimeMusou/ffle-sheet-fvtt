@@ -3,7 +3,9 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-export default class FFLEPcSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
+export default class FFLEPcSheet extends HandlebarsApplicationMixin(
+  ActorSheetV2,
+) {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes: ["ffle", "sheet", "actor", "pc"],
@@ -34,7 +36,6 @@ export default class FFLEPcSheet extends HandlebarsApplicationMixin(ActorSheetV2
       templates: [
         "systems/ffle-sheet/templates/sheets/actor/shared/defenses/defenses.hbs",
         "systems/ffle-sheet/templates/sheets/actor/shared/defenses/base-defenses.hbs",
-        "systems/ffle-sheet/templates/sheets/actor/shared/defenses/armor.hbs",
         "systems/ffle-sheet/templates/sheets/actor/shared/attack.hbs",
       ],
       scrollable: [""],

@@ -34,7 +34,6 @@ export default class FFLENpcSheet extends HandlebarsApplicationMixin(ActorSheetV
       templates: [
         "systems/ffle-sheet/templates/sheets/actor/shared/defenses/defenses.hbs",
         "systems/ffle-sheet/templates/sheets/actor/shared/defenses/base-defenses.hbs",
-        "systems/ffle-sheet/templates/sheets/actor/shared/defenses/armor.hbs",
         "systems/ffle-sheet/templates/sheets/actor/shared/attack.hbs",
       ],
       scrollable: [""],
@@ -42,7 +41,10 @@ export default class FFLENpcSheet extends HandlebarsApplicationMixin(ActorSheetV
     npcSettings: {
       template:
         "systems/ffle-sheet/templates/sheets/actor/tabs/npc-settings.hbs",
-      templates: ["systems/ffle-sheet/templates/sheets/actor/npc/traits.hbs"],
+      templates: [
+        "systems/ffle-sheet/templates/sheets/actor/npc/traits.hbs",
+        "systems/ffle-sheet/templates/sheets/actor/npc/armor.hbs",
+      ],
     },
     notes: {
       template: "systems/ffle-sheet/templates/sheets/actor/tabs/notes.hbs",

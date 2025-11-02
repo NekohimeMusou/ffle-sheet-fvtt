@@ -1,0 +1,21 @@
+<div>{{localize "FFLE.sheet.armor"}}</div>
+
+<div class="flexrow flex-group-center">
+  {{#each FFLE.armorTypes}}
+  <div>{{localize this}}</div>
+  <select name="system.armorLevel.{{@key}}">
+    {{selectOptions
+      ../FFLE.levelBonusTiers
+      selected=(lookup ../system.armorLevel @key)
+      localize=true
+    }}
+  </select>
+  {{/each}}
+
+  <div>{{localize "FFLE.sheet.sturdy"}}</div>
+  <input
+    type="checkbox"
+    name="system.sturdyArmor"
+    {{checked system.sturdyArmor}}
+  />
+</div>
