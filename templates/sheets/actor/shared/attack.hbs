@@ -1,9 +1,5 @@
 <div class="attack flexcol">
   <div>
-    <div class="flexrow flex-group-center">
-      {{localize "FFLE.debug.attackData"}}
-    </div>
-
     <div class="flexrow">
       <div>{{localize "FFLE.debug.attackMod"}}</div>
       <input
@@ -27,6 +23,8 @@
     </div>
     {{/if}}
 
+    {{! Hiding these temporarily for vertical space }}
+    {{#unless "true"}}
     <div class="flexrow">
       <div>{{localize "FFLE.sheet.critSuccessThreshold"}}</div>
       <input
@@ -48,6 +46,7 @@
         required
       />
     </div>
+    {{/unless}}
 
     <hr />
 
@@ -72,6 +71,7 @@
       />
     </div>
 
+    {{#unless (eq actor.type "npc")}}
     <div class="flexrow">
       <div>{{localize "FFLE.dice.eed"}}</div>
       <input
@@ -79,9 +79,9 @@
         name="system.eedFactor"
         value="{{system.eedFactor}}"
         placeholder="3"
-        {{#if (eq actor.type "npc")}}disabled{{/if}}
       />
     </div>
+    {{/unless}}
 
     <hr />
 

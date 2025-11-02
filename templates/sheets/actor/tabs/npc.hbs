@@ -1,14 +1,4 @@
 <section class="tab npc {{tab.cssClass}}" data-group="primary" data-tab="npc">
-  <div class="flexrow">
-    <h1>{{localize "FFLE.tab.npc"}}</h1>
-    <div class="flexcol">
-      <div>{{localize "FFLE.sheet.npc.tier"}}</div>
-      <select name="system.npcTier">
-        {{selectOptions FFLE.npcTiers selected=system.npcTier localize=true}}
-      </select>
-    </div>
-  </div>
-
   <div class="flexcol">
     {{! Attack and defense panes }}
     <div class="flexrow">

@@ -1,9 +1,15 @@
-<ol>
-  <li class="flexrow flex-group-center">
-    {{localize "FFLE.sheet.initiative"}}
-  </li>
+<div>
+  {{#if (eq actor.type "npc")}}
+  <div class="flexrow">
+    <div>{{localize "FFLE.sheet.npc.tier"}}</div>
+    <select name="system.npcTier">
+      {{selectOptions FFLE.npcTiers selected=system.npcTier localize=true}}
+    </select>
+  </div>
+  {{/if}}
 
-  <li class="flexrow">
+  <div class="flexrow">
+    <div>{{localize "FFLE.sheet.initiative"}}</div>
     <input
       type="number"
       name="system.initiative"
@@ -12,15 +18,15 @@
       required
       {{#if (eq actor.type "npc")}}disabled{{/if}}
     />
-  </li>
+  </div>
 
   <hr />
 
-  <li class="flexrow flex-group-center">
+  <div class="flexrow flex-group-center">
     {{localize "FFLE.sheet.defenses"}}
-  </li>
+  </div>
 
-  <li class="flexrow">
+  <div class="flexrow">
     <div>{{localize "FFLE.defenseTypes.phys"}}</div>
     <input
       type="number"
@@ -30,9 +36,9 @@
       required
       {{#if (eq actor.type "npc")}}disabled{{/if}}
     />
-  </li>
+  </div>
 
-  <li class="flexrow">
+  <div class="flexrow">
     <div>{{localize "FFLE.defenseTypes.mag"}}</div>
     <input
       type="number"
@@ -42,9 +48,9 @@
       required
       {{#if (eq actor.type "npc")}}disabled{{/if}}
     />
-  </li>
+  </div>
 
-  <li class="flexrow">
+  <div class="flexrow">
     <div>{{localize "FFLE.defenseTypes.skill"}}</div>
     <input
       type="number"
@@ -54,15 +60,15 @@
       required
       {{#if (eq actor.type "npc")}}disabled{{/if}}
     />
-  </li>
+  </div>
 
   <hr />
 
-  <li class="flexrow flex-group-center">
+  <div class="flexrow flex-group-center">
     {{localize "FFLE.sheet.damageResistance"}}
-  </li>
+  </div>
 
-  <li class="flexrow">
+  <div class="flexrow">
     <div>{{localize "FFLE.defenseTypes.phys"}}</div>
     <input
       type="number"
@@ -70,9 +76,9 @@
       value="{{system.dr.phys}}"
       placeholder="0"
     />
-  </li>
+  </div>
 
-  <li class="flexrow">
+  <div class="flexrow">
     <div>{{localize "FFLE.defenseTypes.mag"}}</div>
     <input
       type="number"
@@ -80,5 +86,5 @@
       value="{{system.dr.mag}}"
       placeholder="0"
     />
-  </li>
-</ol>
+  </div>
+</div>
