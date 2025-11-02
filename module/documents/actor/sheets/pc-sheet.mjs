@@ -37,9 +37,11 @@ export default class FFLEPcSheet extends HandlebarsApplicationMixin(
         "systems/ffle-sheet/templates/sheets/actor/shared/defenses/defenses.hbs",
         "systems/ffle-sheet/templates/sheets/actor/shared/defenses/base-defenses.hbs",
         "systems/ffle-sheet/templates/sheets/actor/shared/attack.hbs",
-        "systems/ffle-sheet/templates/sheets/actor/shared/notes.hbs",
       ],
       scrollable: [""],
+    },
+    notes: {
+      template: "systems/ffle-sheet/templates/sheets/actor/shared/notes.hbs",
     },
   };
 

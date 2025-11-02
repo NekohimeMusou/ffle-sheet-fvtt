@@ -14,6 +14,9 @@
   "[handlebars]": {
     "editor.tabSize": 2
   },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "files.exclude": {
     "foundry/": true,
     "node_modules/": true,

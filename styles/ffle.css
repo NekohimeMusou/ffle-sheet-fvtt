@@ -1,17 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 /* Global styles */
 .window-app {
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
+}
+
+.roll-highlight {
+  font-weight: bold;
 }
 
 .roll-highlight:hover, .roll-highlight:focus {
   color: #000;
   text-shadow: 0 0 10px red;
   cursor: pointer;
-}
-
-.roll-highlight {
-  font-weight: bold;
 }
 
 .grid,
@@ -165,63 +166,51 @@
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {
-  -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   text-align: center;
 }
 
 .flex-group-left {
-  -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
   text-align: left;
 }
 
 .flex-group-right {
-  -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end;
   text-align: right;
 }
 
 .flexshrink {
-  -webkit-box-flex: 0;
-  -ms-flex: 0;
   flex: 0;
 }
 
 .flex-between {
-  -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
 .flexlarge {
-  -webkit-box-flex: 2;
-  -ms-flex: 2;
   flex: 2;
 }
 
 .align-left {
-  -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
   text-align: left;
 }
 
 .align-right {
-  -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end;
   text-align: right;
 }
 
 .align-center {
-  -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
@@ -231,55 +220,36 @@
   font-weight: bold;
 }
 
-/* Styles limited to SMT TC sheets */
-/* .ffle { /*
-  /* ----------------------------------------- */
-  /*  Items Lists                              */
-  /* ----------------------------------------- */
-  /* Example style for Boilerplate (can be removed if not needed) */
-/*} */
+/* Styles limited to FFLE sheets */
 
 .ffle .item-form {
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 .ffle .sheet-header {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 auto;
   flex: 0 auto;
   overflow: hidden;
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: start;
+  flex-flow: row wrap;
   -ms-flex-pack: start;
   justify-content: flex-start;
   margin-bottom: 10px;
 }
 
 .ffle .sheet-header .profile-img {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 100px;
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
 }
 
 .ffle .sheet-header .header-fields {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
 .ffle .sheet-header h1.charname {
   height: 50px;
-  padding: 0px;
+  padding: 0;
   margin: 5px 0;
   border-bottom: 0;
 }
@@ -291,8 +261,6 @@
 }
 
 .ffle .sheet-tabs {
-  -webkit-box-flex: 0;
-  -ms-flex: 0;
   flex: 0;
 }
 
@@ -318,10 +286,9 @@
   height: 28px;
   margin: 2px 0;
   padding: 0;
-  -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 5%);
   border: 2px groove #eeede0;
   font-weight: bold;
 }
@@ -336,7 +303,6 @@
   padding-left: 5px;
   text-align: left;
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -362,18 +328,14 @@
 }
 
 .ffle .items-list .item-name {
-  -webkit-box-flex: 2;
-  -ms-flex: 2;
   flex: 2;
   margin: 0;
   overflow: hidden;
   font-size: 13px;
   text-align: left;
-  -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -386,12 +348,8 @@
 
 .ffle .items-list .item-controls {
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 100px;
   flex: 0 0 100px;
-  -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end;
 }
@@ -403,7 +361,6 @@
 }
 
 .ffle .items-list .item {
-  -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   padding: 0 2px;
@@ -419,8 +376,6 @@
 }
 
 .ffle .items-list .item .item-name .item-image {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 30px;
   flex: 0 0 30px;
   height: 30px;
   background-size: 30px;
@@ -439,10 +394,9 @@
   height: 28px;
   margin: 2px 0;
   padding: 0;
-  -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 5%);
   border: 2px groove #eeede0;
   font-weight: bold;
 }
@@ -458,8 +412,6 @@
 }
 
 .ffle .item-formula {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 200px;
   flex: 0 0 200px;
   padding: 0 8px;
 }
@@ -480,12 +432,15 @@
 .item-controls .item-toggle {
   color: #b5b3a4;
 }
+
 .item-controls .item-toggle.active {
   color: #4b4a44;
 }
+
 .item-controls .item-toggle.fixed {
   color: #44191A;
 }
+
 .item-controls .item-toggle.fixed:hover {
   text-shadow: none;
 }

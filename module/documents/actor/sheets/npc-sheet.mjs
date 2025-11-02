@@ -35,7 +35,6 @@ export default class FFLENpcSheet extends HandlebarsApplicationMixin(ActorSheetV
         "systems/ffle-sheet/templates/sheets/actor/shared/defenses/defenses.hbs",
         "systems/ffle-sheet/templates/sheets/actor/shared/defenses/base-defenses.hbs",
         "systems/ffle-sheet/templates/sheets/actor/shared/attack.hbs",
-        "systems/ffle-sheet/templates/sheets/actor/shared/notes.hbs",
       ],
       scrollable: [""],
     },
@@ -46,6 +45,9 @@ export default class FFLENpcSheet extends HandlebarsApplicationMixin(ActorSheetV
         "systems/ffle-sheet/templates/sheets/actor/npc/traits.hbs",
         "systems/ffle-sheet/templates/sheets/actor/npc/armor.hbs",
       ],
+    },
+    notes: {
+      template: "systems/ffle-sheet/templates/sheets/actor/shared/notes.hbs",
     },
   };
 

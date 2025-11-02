@@ -53,7 +53,7 @@ function generateSchema() {
 
     extraMods: new fields.SchemaField({
       swapHpMp: new fields.BooleanField(),
-      swapPdSd: new fields.BooleanField(),
+      swapPdMd: new fields.BooleanField(),
     }),
 
     sturdyArmor: new fields.BooleanField(),
@@ -155,7 +155,7 @@ export default class NPCData extends FFLEBaseActorData {
     // Tier + bonuses
 
     /** @type {Record<string, boolean>} */
-    const { swapHpMp, swapPdSd } = this.extraMods;
+    const { swapHpMp, swapPdMd } = this.extraMods;
 
     this.initiative = getNPCAbility(
       "initiative",
@@ -196,11 +196,11 @@ export default class NPCData extends FFLEBaseActorData {
     );
 
     this.defense.phys =
-      (swapPdSd ? Math.floor(defenseTrait / 2) : defenseTrait) +
+      (swapPdMd ? Math.floor(defenseTrait / 2) : defenseTrait) +
       this.armorBonus.phys +
       this.npcDefenseBonus.phys;
     this.defense.mag =
-      (swapPdSd ? defenseTrait : Math.floor(defenseTrait / 2)) +
+      (swapPdMd ? defenseTrait : Math.floor(defenseTrait / 2)) +
       this.armorBonus.mag +
       this.npcDefenseBonus.mag;
 
