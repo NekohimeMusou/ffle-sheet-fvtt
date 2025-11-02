@@ -6,16 +6,19 @@
   }}
 </h3>
 {{{attackRoll}}}
+
 {{#if critSuccess}}
 <div><strong>{{localize "FFLE.dice.critSuccess"}}</strong></div>
 {{/if}}
+
 {{#if critFail}}
 <div><strong>{{localize "FFLE.dice.critFail"}}</strong></div>
 {{/if}}
+
 {{#unless critFail}}
   <h2>{{localize "FFLE.debug.attack.targets"}}</h2>
 
   {{#each targetData}}
   {{> "systems/ffle-sheet/templates/chat/attack/target-part.hbs" targetDefense=../targetDefense}}
   {{/each}}
-{{#unless}}
+{{/unless}}
